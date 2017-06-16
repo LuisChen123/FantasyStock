@@ -1,46 +1,34 @@
 // Include React
-var React = require("react");
+import React, {Component} from "react";
 // Including the Link component from React Router to navigate within our application without full page reloads
-var Link = require("react-router").Link;
+import { Link } from "react-router";
+import apiHelper from "../apiHelper/apiHelper.js"; 
 
+class Main extends Component {
 
+  constructor(){
+    super(); 
+    this.state = {
+      user: 
+    }
 
+    this.getAllUser = this.getAllUser.bind(this); 
+  }
 
-var Main = React.createClass({
+  getAllUser(){
+
+  }
+
 
     // Here we render the function
-  render: function() {
-
+  render() {
     return (
-<div class="container">  
-  <nav className="navbar navbar-inverse">
-  <div className="container-fulid">
-  <div className="navbar-header">
-    <a href="#" className="navbar-brand"></a>
-  </div>
-  
-  <div>
-    <ul className="nav navbar-nav">
-      <li><a><Link to="/saved">Saved</Link></a></li>
-      <li><a><Link to="/search">Search</Link></a></li>      
-    </ul>
-    </div>
+      <div className = "container"> 
 
-
-    </div>
-</nav>
-
-        <div className="row">
-
-          {/* This code will dump the correct Child Component {this.props.children} */}
-          {this.props.children} 
-          
-        </div>
-
-</div>
-    );
+      </div> 
+    ); 
   }
-});
+}
 
-// Export the component back for use in other files
-module.exports = Main;
+
+export default Main;
