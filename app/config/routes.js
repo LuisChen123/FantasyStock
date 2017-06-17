@@ -6,7 +6,9 @@ import Main from "../components/Main.js";
 const routes = (
 	<Router history = {browserHistory}>
 		<Route path = "/" component = {Main}>
+		<Route path = "/trade" component = {}/> 
 			<Indexroute component = {}	/> 
+		}
 		</Route> 
 	</Router>
 ); 
