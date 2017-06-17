@@ -2,6 +2,7 @@
 import React, {Component} from "react";
 // Including the Link component from React Router to navigate within our application without full page reloads
 import { Link } from "react-router";
+import navbar from "./navbar.js"; 
 import apiHelper from "../apiHelper/apiHelper.js"; 
 
 class Main extends Component {
@@ -24,7 +25,9 @@ class Main extends Component {
   render() {
     return (
       <div className = "container"> 
-
+        <navbar /> 
+          {props.children}
+        
       </div> 
     ); 
   }
