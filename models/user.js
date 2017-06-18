@@ -9,7 +9,9 @@ var userSchema = new Schema({
 	lastName: String,
 	age: Number,
 	grade: Number, 
-	
+	userName: 
+	loginPassword:
+	email: 
 	cash: Number,
 	tradeHistory: 
 		[{ 
