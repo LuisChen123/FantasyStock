@@ -11,11 +11,19 @@ var router = new express.Router();
 router.use("/api", apiRoutes);
 //	this route is for verifying user login info
 router.post("/logIn", function(req, res){
+	var userName = req.body.userName;
+	var loginPassword = req.body.loginPassword; 
 
 });
 // This route is for dealing with new user sign up
 router.post("/signUp", function(req, res){
-
+	var firstName = 
+	var lastName = 
+	var age = 
+	var grade = 
+	var userName =
+	var loginPassword = 
+	var email = 
 }); 
 
 // send all other requests this. This will give the user the login page. 
