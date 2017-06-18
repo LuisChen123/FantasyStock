@@ -11,13 +11,20 @@ class Main extends Component {
   constructor(){
     super(); 
     this.state = {
-      user: 
+      userFirstName: "",
+      userLastName: "",
+      userCashAvailable: 0,
+      
     }
 
-    this.getAllUser = this.getAllUser.bind(this); 
+    this.getUser = this.getUser.bind(this); 
   }
 
-  getAllUser(){
+  componentWillMount(){
+    // Make api calls here and then set the state here. 
+  }
+
+  getUser(){
 
   }
 

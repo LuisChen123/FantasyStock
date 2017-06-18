@@ -6,7 +6,7 @@ var dbManager = require("../models/dbManager.js");
 var router = new express.Router(); 
 
 router.get("/saved", function(req, res){
-	dbManager.Users_GetAll(function(info){
+	dbManager.getUserInfo(function(info){
 		res.send(info); 
 	}); 
 });

@@ -4,14 +4,35 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema; 
 // creating schema for db
 var userSchema = new Schema({
+	
 	firstName: String,
 	lastName: String,
+	age: Number,
+	grade: Number, 
+	
 	cash: Number,
-	portfolio: [{
-		type: Schema.Types.ObjectId,
-		ref: "portfolioModel"
-	}],
-	dateAccountCreated: {type: Date, default: Date.now}
+	tradeHistory: 
+		[{ 
+			stockName: String,
+			Date: Date.now,
+			numberOfSharesPurchased: Number,
+			sharePrice: 
+				{	
+					type: Number, 
+					required: true,
+					validate:
+						{
+						 	validator: Number.isInteger,
+						 	message: "{VALUE} is not an integer value"
+						}
+				}
+		}],
+	portfolio: 
+		[{
+			stockName: String,
+			shareCount: Number
+		}]
+	createdAt: {type: Date, default: Date.now}
 }); 
 // creating model for db
 var userModel = mongoose.model("userModel", userSchema); 
