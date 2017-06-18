@@ -62,17 +62,17 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="login-page">
 				<div class="form">
-					<form class="register-form">
-						<input type="text" placeholder="name" />
-						<input type="password" placeholder="password" />
-						<input type="text" placeholder="email address" />
-						<button>create</button>
+					<form class="register-form" class="input-group">
+						<input type="text" placeholder="name"  id="registerUserName" required="required" class="form-control"/>
+						<input type="password" placeholder="password" id="registerPassword" required="required" class="form-control"/>
+						<input type="text" placeholder="email address" id="registerEmailAdress" required="required" class="form-control"/>
+						<button id="register-submit">create</button>
 						<p class="message">Already registered? <a href="#">Sign In</a></p>
 					</form>
-					<form class="login-form">
-						<input type="text" placeholder="username" />
-						<input type="password" placeholder="password" />
-						<button>login</button>
+					<form class="login-form" class="input-group">
+						<input type="text" placeholder="username" id="loginUserName" required="required" class="form-control"/>
+						<input type="password" placeholder="password" id="loginPassword" required="required" class="form-control"/>
+						<button id="login-submit">login</button>
 						<p class="message">Not registered? <a href="#">Create an account</a></p>
 					</form>
 				</div>
