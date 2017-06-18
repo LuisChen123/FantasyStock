@@ -9,10 +9,11 @@ var userSchema = new Schema({
 	lastName: String,
 	age: Number,
 	grade: Number, 
-	userName: 
-	loginPassword:
-	email: 
-	cash: Number,
+	userName: String,
+	loginPassword: String,
+	email: String,
+
+	cash: {type: Number, default: 1000},
 	tradeHistory: 
 		[{ 
 			stockName: String,
@@ -33,7 +34,7 @@ var userSchema = new Schema({
 		[{
 			stockName: String,
 			shareCount: Number
-		}]
+		}],
 	createdAt: {type: Date, default: Date.now}
 }); 
 // creating model for db

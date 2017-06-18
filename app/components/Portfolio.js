@@ -17,6 +17,7 @@ class Porfolio extends Component {
       lastName: "",
       age: "",
       grade: "",
+      cash: 0,
       stocks: []
     };
  
