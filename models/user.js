@@ -44,7 +44,7 @@ var userSchema = new Schema({
 	tradeHistory: 
 		[{ 
 			stockName: String,
-			Date: Date.now,
+			Date: {type: Date, default: Date.now},
 			numberOfSharesPurchased: Number,
 			sharePrice: 
 				{	
