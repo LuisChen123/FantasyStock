@@ -15,18 +15,21 @@ var dbManager = {
 	},
 
 	userModel_SaveUser: function(req, res) {
+		console.log(req.body+ "this is 18")
     	var body = req.body;
+		console.log("this is userModel_SaveUser" )
     	bcrypt.genSalt(10, function(err, salt) {
-      		bcrypt.hash(body.password, salt, function(err, hash) {
+      		bcrypt.hash(body.PassWord, salt, function(err, hash) {
+				  console.log(body.PassWord)
         		// Store hash in your password DB.
         		userModel.create({
-          			username: body.name,
+          			username: body.UserName,
           			loginPassword: hash,
-          			firstName: body.firstName,
-          			lastName: body.lastName,
-          			age: body.age,
-          			grade: body.grade,
-          			email: body.email
+          			firstName: body.FirstName,
+          			lastName: body.LastName,
+          			age: body.Age,
+          			grade: body.Grade,
+          			email: body.EmailAddress
         		})
         		.then(function(err, user) {
         			if(err){

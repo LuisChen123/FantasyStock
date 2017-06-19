@@ -14,11 +14,13 @@ router.use("/api", apiRoutes);
 router.post("/logIn", function(req, res){
 	// var userName = req.body.userName;
 	// var loginPassword = req.body.loginPassword; 
+	console.log(req.body); 
 	dbManager.userModel_AuthenticateUser(req, res); 
 });
 // This route is for dealing with new user sign up
 router.post("/signUp", function(req, res){
-	
+	console.log("this is signup")
+	console.log(req.body);
 	dbManager.userModel_SaveUser(req, res); 
 }); 
 
