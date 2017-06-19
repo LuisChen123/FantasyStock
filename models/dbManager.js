@@ -19,6 +19,7 @@ var dbManager = {
     	var body = req.body;
 		console.log("this is userModel_SaveUser" )
     	bcrypt.genSalt(10, function(err, salt) {
+			console.log('salt', salt);
       		bcrypt.hash(body.PassWord, salt, function(err, hash) {
 				  console.log(body.PassWord)
         		// Store hash in your password DB.
@@ -45,16 +46,32 @@ var dbManager = {
 
   	userModel_AuthenticateUser: function(req, res) {
     //query for password where username = req.body.username
-    	bcrypt.compare(req.body.password, queryResults, function(err, bcryptRes) {
-      		if (bcryptRes) {
-        		res.sendFile(path.join(__dirname,"../public/react.html"));
-      		} 
-      		else {
-        		res.json(false);
-      		}
-    	});
-  	}
+		// console.log(req.body.PassWord + "48");
+		// userModel.findOne({"username":req.body.UserName}).then(function(err,result){
+		// 	console.log(result + "49");
+		// });
 
+
+    	// bcrypt.compare(req.body.password, loginPassword, function(err, bcryptRes) {
+      	// 	if (bcryptRes) {
+        // 		res.sendFile(path.join(__dirname,"../public/react.html"));
+      	// 	} 
+      	// 	else {
+        // 		res.json(false);
+		// 		console.log("line 54")
+      	// 	}
+    	// });
+
+		var body = req.body;
+		bcrypt.genSalt(10, function(err, salt) {
+      		bcrypt.hash(body.PassWord, salt, function(err, hash) {
+				  console.log(body.UserName + "  " + hash + " line 67 ");
+				userModel.findOne({"username":body.UserName, "loginPassword": hash},function(err,result){
+					console.log(result + "49");
+				});	
+			});
+  		});
+	}
 	/*
 	// will check to see if user has the money to make the purchase, if so then user info will be updated,
 	// if not, user will be alerted. 
