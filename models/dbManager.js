@@ -12,7 +12,7 @@ var dbManager = {
 			}
 			cb(info); 
 		});
-	} 
+	},
 
 	userModel_SaveUser: function(req, res) {
     	var body = req.body;
@@ -38,7 +38,7 @@ var dbManager = {
         		});
       		});
     	});
-  	}
+  	},
 
   	userModel_AuthenticateUser: function(req, res) {
     //query for password where username = req.body.username
