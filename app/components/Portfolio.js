@@ -40,7 +40,12 @@ class Porfolio extends Component {
         </div>
 
         <div className="col-md-6">
-          <AccountingInfo />
+          <div className = "panel panel-default">
+            <div className="panel-heading">
+            <h3 className="panel-title text-center">Stocks you own</h3>
+            </div>
+            <AccountingInfo stocks={this.state.stocks}/>
+          </div>
         </div>  
 
 
