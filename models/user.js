@@ -5,11 +5,26 @@ var Schema = mongoose.Schema;
 // creating schema for db
 var userSchema = new Schema({
 	
-	firstName: String,
-	lastName: String,
+	firstName: 
+	{
+    type: String,
+    trim: true,
+    required: "First Name is Required"
+  	},
+  	lastName: 
+  	{
+    type: String,
+    trim: true,
+    required: "Last Name is Required"
+  	},
 	age: Number,
 	grade: Number, 
-	userName: String,
+	username: 
+	{
+    type: String,
+    trim: true,
+    required: "Username is Required"
+  	},
 	loginPassword: String,
 	email: String,
 
