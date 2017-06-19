@@ -24,7 +24,7 @@ router.post("/signUp", function(req, res){
 
 // send all other requests this. This will give the user the login page. 
 router.get("*", function(req, res){
-	res.sendFile(path.join(__dirname, "../public/loginPage.html"));
+	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router; 
