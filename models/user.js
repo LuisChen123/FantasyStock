@@ -7,28 +7,40 @@ var userSchema = new Schema({
 	
 	firstName: 
 	{
-    type: String,
-    trim: true,
-    required: "First Name is Required"
+    	type: String,
+    	trim: true,
+    	required: "First Name is Required"
   	},
+
   	lastName: 
   	{
-    type: String,
-    trim: true,
-    required: "Last Name is Required"
+    	type: String,
+    	trim: true,
+    	required: "Last Name is Required"
   	},
+
 	age: Number,
+
 	grade: Number, 
+
 	username: 
 	{
-    type: String,
-    trim: true,
-    required: "Username is Required"
+    	type: String,
+    	trim: true,
+    	required: "Username is Required"
   	},
-	loginPassword: String,
+
+	loginPassword: 
+	{
+		type: String,
+		trim: true,
+		required: "Password is Required"
+	},
+
 	email: String,
 
 	cash: {type: Number, default: 1000},
+
 	tradeHistory: 
 		[{ 
 			stockName: String,
@@ -45,11 +57,13 @@ var userSchema = new Schema({
 						}
 				}
 		}],
+
 	portfolio: 
 		[{
 			stockName: String,
 			shareCount: Number
 		}],
+		
 	createdAt: {type: Date, default: Date.now}
 }); 
 // creating model for db
