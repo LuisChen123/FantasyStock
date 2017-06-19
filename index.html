@@ -26,22 +26,10 @@
           <div class="inner">
             <h3 class="masthead-brand">FantasyStock</h3>
             <nav class="nav nav-masthead">
-              <a class="nav-link active" href="#">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link active" data-toggle="modal" data-target=".bs-example-modal-lg">Log in/Sign Up</a>
+              <a class="nav-link active" data-toggle="modal" data-target="#exampleModalLong">Learn more</a>
             </nav>
           </div>
-        </div>
-
-        <div class="inner cover">
-          <h1 class="cover-heading">saved</h1>
-          <p class="lead">
-            <br>
-            tockFantasyStockFantasyStockFantasyStock
-          </p>
-          <p class="lead">
-            <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target=".bs-example-modal-lg">Log in</a>
-          </p>
         </div>
 
         <div class="mastfoot">
@@ -57,32 +45,55 @@
   </div>
 
 
-
-  	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="login-page">
-				<div class="form form-control">
-					<form class="register-form" class="input-group">
-						<input type="text" placeholder="firstName"  id="firstName" required="required" class="form-control"/>
-						<input type="text" placeholder="lastName" id="lastName" required="required" class="form-control"/>
-						<input type="password" placeholder="password" id="password" required="required" class="form-control"/>
-						<input type="email" placeholder="email address" id="EmailAdress" required="required" class="form-control"/>
-            <input type="text" placeholder="Age" id="Age" required="required" class="form-control"/>
-            <input type="text" placeholder="Grade" id="Grade" required="required" class="form-control"/>
-            <input type="text" placeholder="userName" id="userName" required="required" class="form-control"/>
+  <!--log in modal-->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="login-page">
+        <div class="form form-control">
+          <form class="register-form" class="input-group">
+            <input type="text" placeholder="firstName" id="firstName" required="required" class="form-control" />
+            <input type="text" placeholder="lastName" id="lastName" required="required" class="form-control" />
+            <input type="password" placeholder="password" id="password" required="required" class="form-control" />
+            <input type="email" placeholder="email address" id="EmailAdress" required="required" class="form-control" />
+            <input type="text" placeholder="Age" id="Age" required="required" class="form-control" />
+            <input type="text" placeholder="Grade" id="Grade" required="required" class="form-control" />
+            <input type="text" placeholder="userName" id="userName" required="required" class="form-control" />
             <button id="register-submit">create</button>
-						<p class="message">Already registered? <a href="#">Sign In</a></p>
-					</form>
-					<form class="login-form">
-						<input type="text" placeholder="username" id="loginUserName" required="required" class="form-control"/>
-						<input type="password" placeholder="password" id="loginPassword" required="required" class="form-control"/>
-						<button id="login-submit">login</button>
-						<p class="message">Not registered? <a href="#">Create an account</a></p>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+          </form>
+          <form class="login-form">
+            <input type="text" placeholder="username" id="loginUserName" required="required" class="form-control" />
+            <input type="password" placeholder="password" id="loginPassword" required="required" class="form-control" />
+            <button id="login-submit">login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--learn more modal-->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+         sadasda sadasda sadasda sadasda sadasda sadasda sadasda sadasda sadasda sadasda sadasda
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -102,11 +113,8 @@
 </html>
 
 
-
-
 </div>
-<script
-  src="https://code.jquery.com/jquery-3.2.1.js"integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src="./js/loginPage.js"></script>
 
