@@ -5,7 +5,7 @@ var bluebird = require("bluebird");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var port = process.env.PORT || 3000;
-var routes = require(".routes/routes.js"); 
+var routes = require("./routes/routes.js"); 
 var dbManager = require("./models/dbManager.js"); 
 mongoose.Promise = bluebird;
 
