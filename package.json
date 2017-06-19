@@ -12,9 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
+    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "js": "^0.1.0",
     "mongoose": "^4.7.5",
     "morgan": "^1.8.2",
     "react": "^15.4.1",
