@@ -45,32 +45,41 @@ var dbManager = {
   	},
 
   	userModel_AuthenticateUser: function(req, res) {
-    //query for password where username = req.body.username
-		// console.log(req.body.PassWord + "48");
-		// userModel.findOne({"username":req.body.UserName}).then(function(err,result){
-		// 	console.log(result + "49");
-		// });
+    // query for password where username = req.body.username
+		
+		userModel.find({"username":req.body.UserName}).exec(function(err,result){
+			console.log(err, ("             51"))
+			
+			if(err){
+				res.json(err);
+			}
+			else{
+			console.log(result[0].loginPassword + "   49");
+			console.log(req.body.PassWord + "       52");
+			var dbPassword = result[0].loginPassword;
+			console.log(dbPassword + "53");
+    		bcrypt.compare(req.body.PassWord, dbPassword, function(err, bcryptRes) {
+				console.log(bcryptRes + "          55");
+      			if (bcryptRes) {
+        			res.sendFile(path.join(__dirname,"../public/react.html"));
+      			}	 
+      			else {
+        			res.json(false);
+					console.log("line 54")
+      			}
+    		});
+			}
+		});
 
-
-    	// bcrypt.compare(req.body.password, loginPassword, function(err, bcryptRes) {
-      	// 	if (bcryptRes) {
-        // 		res.sendFile(path.join(__dirname,"../public/react.html"));
-      	// 	} 
-      	// 	else {
-        // 		res.json(false);
-		// 		console.log("line 54")
-      	// 	}
-    	// });
-
-		var body = req.body;
-		bcrypt.genSalt(10, function(err, salt) {
-      		bcrypt.hash(body.PassWord, salt, function(err, hash) {
-				  console.log(body.UserName + "  " + hash + " line 67 ");
-				userModel.findOne({"username":body.UserName, "loginPassword": hash},function(err,result){
-					console.log(result + "49");
-				});	
-			});
-  		});
+		// var body = req.body;
+		// bcrypt.genSalt(10, function(err, salt) {
+      	// 	bcrypt.hash(body.PassWord, salt, function(err, hash) {
+		// 		  console.log(body.UserName + "  " + hash + " line 67 ");
+		// 		userModel.findOne({"username":body.UserName, "loginPassword": hash},function(err,result){
+		// 			console.log(result + "49");
+		// 		});	
+		// 	});
+  		// });
 	}
 	/*
 	// will check to see if user has the money to make the purchase, if so then user info will be updated,

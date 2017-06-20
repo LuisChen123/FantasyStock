@@ -42,14 +42,13 @@ $(document).ready(function() {
     
     $.post("/logIn", returnUser).done(function(data) {
       console.log(data)
-      if (data === null) {
+      if (data === false) {
         alert("No such user or password is not a match!!!")
-      } else {
-        alert("welcome come back " + data.userName)
+      } 
         
-        localStorage.setItem("returnUserID", returnUserID);
-        console.log(localStorage.getItem("returnUserID"));
-      }
+        // localStorage.setItem("returnUserID", returnUserID);
+        // console.log(localStorage.getItem("returnUserID"));
+      
     });
   })
 });
