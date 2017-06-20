@@ -2,13 +2,13 @@ import React from "react";
 import {Link} from "react-router"; 
 
 const navbar = () => (
-	<nav class="navbar navbar-default navbar-fixed-top">
-  		<div class="container-fluid">
+	<nav className="navbar navbar-default navbar-fixed-top">
+  		<div className="container-fluid">
   			<Link to = "/"> 
-   				<button type="button" class="btn btn-default navbar-btn">Home</button>
+   				<button type="button" className="btn btn-default navbar-btn">Home</button>
    			</Link>
    			<Link to = "/trade">
-   				<button type="button" class="btn btn-default navbar-btn">Trade</button>
+   				<button type="button" className="btn btn-default navbar-btn">Trade</button>
    			</Link> 
   		</div>
 	</nav>

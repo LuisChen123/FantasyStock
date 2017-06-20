@@ -25,4 +25,4 @@ class Info extends Component {
   }
 }
 
-export default Home;
+export default Info;
