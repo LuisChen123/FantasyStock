@@ -74,6 +74,9 @@ body {
   padding: 1rem;
   background-color: black;
   text-align: center;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size:x-large;
+  color: green;
 }
 /*
  * Header
@@ -85,6 +88,15 @@ body {
 
 .masthead-brand {
   margin-bottom: 0;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size:xx-large;
+  color: green;
+}
+
+.nav-masthead{
+  font-family: 'Patrick Hand SC', cursive;
+  font-size:large;
+  color: green;
 }
 
 .nav-masthead .nav-link {
