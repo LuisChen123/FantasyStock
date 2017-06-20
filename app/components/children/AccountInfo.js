@@ -6,7 +6,6 @@ class Info extends Component {
   
   }
 
-
   render() {
     return (
         <div className="panel-body text-center">

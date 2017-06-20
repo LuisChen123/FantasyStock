@@ -4,10 +4,6 @@ import apiHelper from "../apiHelper/apiHelper.js";
 import Info from "./children/Info.js"
 import AccountingInfo from "./children/AccountingInfo.js"
 
-
-
-
-
 class Porfolio extends Component {
   constructor() {
     super();
@@ -20,16 +16,10 @@ class Porfolio extends Component {
       cash: 0,
       stocks: []
     };
- 
-    
+  
   }
-
-  componentDidMount() {
-    
-  }
- 
-
-
+  componentDidMount() { 
+  } 
   render() {
     return (
       <div className="container">
@@ -47,11 +37,7 @@ class Porfolio extends Component {
             <AccountingInfo stocks={this.state.stocks}/>
           </div>
         </div>  
-
-
-
-
-      </div>
+     </div>
     </div>
     );
   }

@@ -5,7 +5,6 @@ class Info extends Component {
     super();
   
   }
-
   render() {
     return (
       <div className="container-fluid">

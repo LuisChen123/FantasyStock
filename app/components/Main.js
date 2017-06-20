@@ -7,16 +7,7 @@ import footer from "./footer.js";
 
 class Main extends Component {
 
-  constructor(){
-    super(); 
-
-      
-    }
-
- 
-  }
-
-
+  
     // Here we render the function
   render() {
     return (
@@ -28,6 +19,5 @@ class Main extends Component {
     ); 
   }
 }
-
 
 export default Main;
