@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Info extends Component {
+class AccountingInfo extends Component {
   constructor() {
     super();
   
@@ -25,4 +25,4 @@ class Info extends Component {
   }
 }
 
-export default Home;
+export default AccountingInfo;

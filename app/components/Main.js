@@ -1,7 +1,7 @@
 
 import React, {Component} from "react";
-import navbar from "./navbar.js";
-import footer from "./footer.js";
+import Navbar from "./navbar.js";
+import Footer from "./footer.js";
 
 // req.cookie.SSID
 
@@ -10,10 +10,9 @@ class Main extends Component {
   render() {
     return (
       <div className = "container"> 
-       <navbar /> 
-          {props.children}
-          <p> This is some text </p>
-       <footer /> 
+       <Navbar /> 
+          {this.props.children}
+       <Footer /> 
       </div> 
     ); 
   }
