@@ -3,7 +3,8 @@ import {Route, Indexroute, Router, browserHistory} from "react-router";
 // import Trade component here 
 // import Portfolio component here 
 import Main from "../components/Main.js"; 
-import Portfolio from "../components/Portfolio.js"
+import Portfolio from "../components/Portfolio.js";
+import Trade from "../components/Trade.js";
 
 const routes = (
 	<Router history = {browserHistory}>
