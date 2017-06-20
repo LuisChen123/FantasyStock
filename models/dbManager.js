@@ -52,10 +52,9 @@ var dbManager = {
 			console.log(result, ("             52"))
 			var k = [];
 			console.log(result , "line 54  ", k);
-			if(result == false){
+			if(result == false){      //both wrong
 				console.log("working in here");
-				res.json(false);
-			
+				res.send("noUserFound");
 			}
 			else{
 			// console.log(result[0].loginPassword + "   49");

@@ -43,11 +43,16 @@ $(document).ready(function() {
     $.post("/logIn", returnUser).done(function(data) {
       console.log(data)
       if (data === false) {
-        alert("No such user or password is not a match!!!")
-      } 
+        alert("Wrong password!!!!!!!")
+      }
+
+      if(data === "noUserFound"){
+        alert("Did not find user name!!!!")
+      }
         
         // localStorage.setItem("returnUserID", returnUserID);
         // console.log(localStorage.getItem("returnUserID"));
+
       
     });
   })
