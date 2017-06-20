@@ -267,10 +267,8 @@ class Trade extends Component {
       });
     })
     .catch(function(response){
-
     });
   }  
-
 
 render() {
     return (

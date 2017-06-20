@@ -1,6 +1,6 @@
 // Include the Main React Dependencies
 import React from "react"; 
-import ReactDOM from"react-dom";
+import ReactDOM from "react-dom";
 // Include the main Main Component
 import routes from "./config/routes.js";
 
