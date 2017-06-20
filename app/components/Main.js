@@ -1,29 +1,20 @@
 
 import React, {Component} from "react";
-
-import navbar from "./navbar.js"; 
+import navbar from "./navbar.js";
 import footer from "./footer.js";
 
+// req.cookie.SSID
 
 class Main extends Component {
-
-  constructor(){
-    super(); 
-
-      
-    }
-
- 
-  }
-
 
     // Here we render the function
   render() {
     return (
       <div className = "container"> 
-        <navbar /> 
+       <navbar /> 
           {props.children}
-        <footer /> 
+          <p> This is some text </p>
+       <footer /> 
       </div> 
     ); 
   }

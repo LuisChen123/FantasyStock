@@ -3,6 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser"); 
 var bluebird = require("bluebird");
 var logger = require("morgan");
+var cookieParser = require('cookie-parser');
 var mongoose = require("mongoose");
 var port = process.env.PORT || 3001;
 var routes = require("./routes/routes.js"); 
@@ -14,6 +15,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use("/", routes);
 
 if(process.env.MONGODB_URI){
