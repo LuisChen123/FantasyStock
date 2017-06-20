@@ -22,6 +22,7 @@ $(document).ready(function() {
     }
     console.log(newUser);
     $.post("/signUp", newUser).done(function(data) {
+       // event.preventDefault();
       console.log(data)
       if (data.name == "SequelizeValidationError")  
         alert("Please enter correct information!") 
@@ -30,6 +31,7 @@ $(document).ready(function() {
   });
 
   $("#login-submit").on("click", function(event) {
+    event.preventDefault();
  
     var loginUserName = $("#loginUserName").val().trim();
     var loginPassword = $("#loginPassword").val().trim();
@@ -40,20 +42,13 @@ $(document).ready(function() {
     }
     console.log(returnUser);
     
-    $.post("/logIn", returnUser).done(function(data) {
-      console.log(data)
-      if (data === false) {
-        alert("Wrong password!!!!!!!")
-      }
+    $.post("/logIn", returnUser).then(function(data){
 
-      if(data === "noUserFound"){
-        alert("Did not find user name!!!!")
-      }
-        
-        // localStorage.setItem("returnUserID", returnUserID);
-        // console.log(localStorage.getItem("returnUserID"));
-
+      window.location = data;
       
-    });
+    })
+
+
+
   })
 });

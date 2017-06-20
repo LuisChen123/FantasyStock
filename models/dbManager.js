@@ -15,11 +15,11 @@ var dbManager = {
 	},
 
 	userModel_SaveUser: function(req, res) {
-		console.log(req.body+ "this is 18")
+		// console.log(req.body+ "this is 18")
     	var body = req.body;
 		console.log("this is userModel_SaveUser" )
     	bcrypt.genSalt(10, function(err, salt) {
-			console.log('salt', salt);
+			// console.log('salt', salt);
       		bcrypt.hash(body.PassWord, salt, function(err, hash) {
 				  console.log(body.PassWord)
         		// Store hash in your password DB.
@@ -36,8 +36,9 @@ var dbManager = {
         			if(err){
         				res.json(err);
         			}
-          			else{
-          				res.sendFile(path.join(__dirname,"../public/react.html"));
+          			else{;
+          				 console.log("working")
+          				res.redirect("/react");
           			}
         		});
       		});
@@ -46,15 +47,10 @@ var dbManager = {
 
   	userModel_AuthenticateUser: function(req, res) {
     // query for password where username = req.body.username
-		
-		userModel.find({"username":req.body.UserName}).exec(function(err,result){
-			console.log(err, ("             51"))
-			console.log(result, ("             52"))
-			var k = [];
-			console.log(result , "line 54  ", k);
-			if(result == false){      //both wrong
-				console.log("working in here");
-				res.send("noUserFound");
+		userModel.find({"username":req.body.UserName}).exec(function(err,result){	
+			if(!result.length){      //both wrong
+				// console.log("working in here");
+				res.send("/logIn");
 			}
 			else{
 			// console.log(result[0].loginPassword + "   49");
@@ -64,11 +60,21 @@ var dbManager = {
     		bcrypt.compare(req.body.PassWord, dbPassword, function(err, bcryptRes) {
 				console.log(bcryptRes + "          55");
       			if (bcryptRes) {
-        			res.sendFile(path.join(__dirname,"../public/react.html"));
+      				// console.log(req.body.UserName, "        line 66");
+      				res.cookie("SSID", req.body.UserName);
+      				
+      				console.log(req.cookies, "           dbmanager line65");
+      				var cookie = req.cookies;
+      				console.log(cookie.SSID, "                dbmanager line67")
+      				// console.log("dbManager line 65 res ",res);
+      				res.send('/react');
+      				
+        			
       			}	 
       			else {
-        			res.json(false);
-					console.log("line 54")
+      				console.log("line 71")
+        			res.send('/logIn');
+					
       			}
     		});
 			}

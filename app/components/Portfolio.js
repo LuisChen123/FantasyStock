@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js"; 
 import Info from "./children/Info.js"
-import AccountingInfo from "./children/AccountingInfo.js"
+import AccountingInfo from "./children/AccountInfo.js"
 
 
 
