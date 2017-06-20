@@ -1,11 +1,11 @@
-import axio from "axios"; 
+import axios from "axios"; 
 
 var apiHelper = {
 
-	getUserProfile: function(){
-		return axios.get(); 
+	getDowPrice: function(){
+		return axios.get("http://www.google.com/finance/info?q=NSE:MMM, AXP, AAPL, BA, CAT, CVX, CSCO, KO, DIS, DD, XOM, GE, GS, HD, IBM, INTC, GNG, JPM, MCD, MRK, MSFT, NKE, PFE, PG, TRV, UTX, UNH, VZ, V, WMT"); 
+		
 	}
-	
 
 }
 
