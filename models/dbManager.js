@@ -49,13 +49,17 @@ var dbManager = {
 		
 		userModel.find({"username":req.body.UserName}).exec(function(err,result){
 			console.log(err, ("             51"))
+			console.log(result, ("             52"))
+			var k = [];
+			console.log(result , "line 54  ", k);
+			if(result == false){
+				console.log("working in here");
+				res.json(false);
 			
-			if(err){
-				res.json(err);
 			}
 			else{
-			console.log(result[0].loginPassword + "   49");
-			console.log(req.body.PassWord + "       52");
+			// console.log(result[0].loginPassword + "   49");
+			// console.log(req.body.PassWord + "       52");
 			var dbPassword = result[0].loginPassword;
 			console.log(dbPassword + "53");
     		bcrypt.compare(req.body.PassWord, dbPassword, function(err, bcryptRes) {
