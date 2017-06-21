@@ -8,10 +8,10 @@ class Info extends Component {
   render() {
     return (
       <div className="container-fluid">
-            <div class="panel-group">
-              <div class="panel panel-default">
-                <div class="panel-heading">Porfolio Information</div>
-                 <div class="panel-body">
+            <div className="panel-group">
+              <div className="panel panel-default">
+                <div className="panel-heading">Porfolio Information</div>
+                 <div className="panel-body">
                    <p>First Name: {this.props.first} </p>
                     <p> Last Name:{this.props.last} </p>
                     <p> Age: {this.props.age} </p>

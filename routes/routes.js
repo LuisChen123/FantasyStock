@@ -26,6 +26,8 @@ router.get("/react", function(req, res){
 	res.sendFile(path.join(__dirname,"../public/react.html"));
 })
 
+router.get("/getInfo", dbManager.getInfo);
+
 
 // send all other requests this. This will give the user the login page. 
 // router.get("*", function(req, res){

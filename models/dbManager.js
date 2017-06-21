@@ -5,14 +5,23 @@ var path = require("path");
 // create single dbManger
 var dbManager = {
 
-	userModel_GetUserInfo: function(cb){
-		userModel.find({}, function(err, info){
-			if(err){
-				console.log(err);
-			}
-			cb(info); 
-		});
+	getInfo: function(req,res){
+		var name = req.cookies.SSID;
+		// console.log(req.cookies.SSID, "          dbmanager line 9");
+		userModel.findOne({"username": name}).exec(function(err, result){
+			// console.log(result);
+			res.send(result);
+		})
 	},
+
+	// userModel_GetUserInfo: function(cb){
+	// 	userModel.find({}, function(err, info){
+	// 		if(err){
+	// 			console.log(err);
+	// 		}
+	// 		cb(info); 
+	// 	});
+	// },
 
 	userModel_SaveUser: function(req, res) {
 		// console.log(req.body+ "this is 18")
