@@ -43,7 +43,7 @@ $(document).ready(function() {
     console.log(returnUser);
     
     $.post("/logIn", returnUser).then(function(data){
-
+      console.log(data, "               index js line 46");
       window.location = data;
       
     })

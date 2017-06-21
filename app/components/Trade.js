@@ -5,11 +5,12 @@ import apiHelper from "../apiHelper/apiHelper.js";
 class Trade extends Component {
   constructor() {
     super();
-    this.state = { DowJonesArray: [], interval: "" , cash: 0, amount:""};
+    this.state = { DowJonesArray: [], interval: "" , cash: 0, amount:"", stockPortfolio: []};
 
     this.getDowPrice = this.getDowPrice.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.buy = this.buy.bind(this); 
   }
 
   componentDidMount() {
@@ -40,6 +41,25 @@ getInfo() {
     this.setState(newState);
                     
     console.log("Search amount ", this.state.amount);
+  }
+
+  buy(stockName, stockPrice){
+    var cost = stockPrice * this.state.amount; 
+    if(this.state.cash >= cost){
+        // will need to write this function: apiHelper.updatePurchase(); 
+    }
+    else{
+        // alert goes here
+    }
+  }
+
+  sell(stockName, stockPrice){
+    // find if stock name exist in stockPortfolio
+    // if true, we get index of where it is
+    // 
+    // use stockPortfolio[saved indexof].stockname to pull out the amount of shares they have called shares
+    // if shares is greater than this.state.amount we are good to sell
+    // 
   }
 
 
@@ -107,7 +127,7 @@ render() {
               <input
                 value={this.state.amount}
                 type="text"
-                placeholder="Enter the number of stocks you want to buy"
+                placeholder="Enter the number of stocks you want to Buy or Sell"
                 className="form-control text-center"
                 id="amount"
                 onChange={this.handleChange}

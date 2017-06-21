@@ -72,9 +72,9 @@ var dbManager = {
       				// console.log(req.body.UserName, "        line 66");
       				res.cookie("SSID", req.body.UserName);
       				
-      				console.log(req.cookies, "           dbmanager line65");
-      				var cookie = req.cookies;
-      				console.log(cookie.SSID, "                dbmanager line67")
+      				// console.log(req.cookies, "           dbmanager line65");
+      				// var cookie = req.cookies;
+      				// console.log(cookie.SSID, "                dbmanager line67")
       				// console.log("dbManager line 65 res ",res);
       				res.send('/react');
       				
