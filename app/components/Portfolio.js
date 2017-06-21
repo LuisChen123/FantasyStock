@@ -4,7 +4,7 @@ import apiHelper from "../apiHelper/apiHelper.js";
 // import { instanceOf } from 'prop-types';
 // import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 import Info from "./children/Info.js"
-// import AccountingInfo from "./children/AccountInfo.js"
+import AccountInfo from "./children/AccountInfo.js"
 
 
 
@@ -26,7 +26,7 @@ class Portfolio extends Component {
       age: "",
       grade: "",
       cash: 0,
-      stocks: []
+      stocks: [{stockName: "APPL", shareCount: 33},{stockName: "GOOG", shareCount: 20}, {stockName: "MMM", shareCount: 10} ]
     };
   
     this.getInfo = this.getInfo.bind(this);
@@ -59,16 +59,17 @@ class Portfolio extends Component {
         <div className="row">
 
           <div className="col-md-6">
+          <h1> USER PROFILE </h1>
           <Info first={this.state.firstName} last={this.state.lastName} age={this.state.age} grade={this.state.grade}/>
         </div>
 
         <div className="col-md-6">
+        <h1> Stocks that you own </h1>
           <div className = "panel panel-default">
             <div className="panel-heading">
             <h3 className="panel-title text-center">Stocks you own</h3>
             </div>
-            {/*<AccountingInfo stocks={this.state.stocks}/>*/}
-            <p> This is a paragraph </p>
+            <AccountInfo stocks={this.state.stocks}/>
           </div>
         </div>  
      </div>
