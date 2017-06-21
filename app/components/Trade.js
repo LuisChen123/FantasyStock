@@ -5,14 +5,16 @@ import apiHelper from "../apiHelper/apiHelper.js";
 class Trade extends Component {
   constructor() {
     super();
-    this.state = { DowJonesArray: [], interval: "" };
+    this.state = { DowJonesArray: [], interval: "" , cash: 0};
 
     this.getDowPrice = this.getDowPrice.bind(this);
+    this.getInfo = this.getInfo.bind(this);
 
   }
 
   componentDidMount() {
     this.getDowPrice();
+    this.getInfo();
     var intervalId = setInterval(this.getDowPrice, 3000);
     this.setState({interval: intervalId});
   }
@@ -21,6 +23,16 @@ class Trade extends Component {
        // use intervalId from the state to clear the interval
        clearInterval(this.state.interval);
   }
+
+getInfo() {
+    apiHelper.getInfo().then((res) =>{
+      // console.log(res);
+      // console.log(res.data.cash * 5, "            line 30 trade.js")
+      this.setState({ cash: res.data.cash})
+      console.log(this.state.cash);
+    });
+  }
+
 
   getDowPrice(){
     apiHelper.getDowPrice()
