@@ -5,11 +5,11 @@ import apiHelper from "../apiHelper/apiHelper.js";
 class Trade extends Component {
   constructor() {
     super();
-    this.state = { DowJonesArray: [], interval: "" , cash: 0};
+    this.state = { DowJonesArray: [], interval: "" , cash: 0, amount:""};
 
     this.getDowPrice = this.getDowPrice.bind(this);
     this.getInfo = this.getInfo.bind(this);
-
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +31,15 @@ getInfo() {
       this.setState({ cash: res.data.cash})
       console.log(this.state.cash);
     });
+  }
+
+    // This function will respond to the user input
+  handleChange(event) {
+    var newState = {};
+    newState[event.target.id] = event.target.value;
+    this.setState(newState);
+                    
+    console.log("Search amount ", this.state.amount);
   }
 
 
@@ -65,7 +74,7 @@ getInfo() {
   }  
 
 render() {
-    
+        
     var mappedResults = this.state.DowJonesArray.map(function(el){
         return <div className ="container" key={el.stockName}>    
                 <div className = "panel-body">
@@ -94,6 +103,16 @@ render() {
           <div className = "container">
               <br/> 
               <br/> 
+            <h5> Stock Amount </h5>
+              <input
+                value={this.state.amount}
+                type="text"
+                placeholder="Enter the number of stocks you want to buy"
+                className="form-control text-center"
+                id="amount"
+                onChange={this.handleChange}
+                required
+              />
                {mappedResults}
         </div>
     );
