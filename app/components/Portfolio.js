@@ -59,11 +59,17 @@ class Portfolio extends Component {
         <div className="row">
 
           <div className="col-md-6">
+          <br/>
+          <br/>
+          <br/>
           <h1> USER PROFILE </h1>
           <Info first={this.state.firstName} last={this.state.lastName} age={this.state.age} grade={this.state.grade}/>
         </div>
 
         <div className="col-md-6">
+          <br/>
+          <br/>
+          <br/>
         <h1> Stocks that you own </h1>
           <div className = "panel panel-default">
             <div className="panel-heading">
