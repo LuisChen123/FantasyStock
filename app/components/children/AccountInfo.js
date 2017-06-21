@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AccountingInfo extends Component {
+class AccountInfo extends Component {
   constructor() {
     super();
   
@@ -10,12 +10,12 @@ class AccountingInfo extends Component {
     return (
         <div className="panel-body text-center">
           {/* Here we use a map function to loop through an array in JSX */}
+          <h1> Stocks you own </h1>
           <ul className="list-unstyled">
-            {this.props.results.map((item, i)=> {
+            {this.props.stocks.map((item, i)=> {
             return (
-              <li key ={i} className="col-md-2"> 
-                  <p>{item.stockName}</p>
-                  <p> {item.shareCount}</p>
+              <li key ={i} className="col-md-3"> 
+                  <p>{item.stockName} {item.shareCount}</p>
               </li>
             );
           })}
@@ -25,4 +25,4 @@ class AccountingInfo extends Component {
   }
 }
 
-export default AccountingInfo;
+export default AccountInfo;
