@@ -9,10 +9,10 @@ class AccountInfo extends Component {
     return (
         <div className="panel-body text-center">
           {/* Here we use a map function to loop through an array in JSX */}
-            <select class="selectpicker dropup">
+            <select className="selectpicker dropup" data-size="5">
             {this.props.stocks.map((item, i)=> {
             return (      
-                <option>{item.stockName}:{item.shareCount}shares</option>     
+                <option key ={i}>{item.stockName}:{item.shareCount}shares</option>     
             );
           })}
           </select>
