@@ -13,12 +13,14 @@ class Trade extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.buy = this.buy.bind(this); 
     this.sell = this.sell.bind(this); 
+    this.handleCommitSell = this.handleCommitSell.bind(this); 
+    this.handleCommitBuy = this.handleCommitBuy.bind(this);
   }
 
   componentDidMount() {
     this.getDowPrice();
     this.getInfo();
-    var intervalId = setInterval(this.getDowPrice, 3000);
+    var intervalId = setInterval(this.getDowPrice, 300000);
     this.setState({interval: intervalId});
   }
   
@@ -45,61 +47,145 @@ getInfo() {
     console.log("Search amount ", this.state.amount);
   }
 
-  buy(stockName, stockPrice) {
-    var cost = stockPrice * this.state.amount; 
-    console.log(cost, "   line 48", this.state.cash);
-    console.log("something");
-    // if(this.state.cash >= cost){
-    //     // will need to write this function: apiHelper.updatePurchase(); 
-    //     // have an API function will have the person's stockprice, stockName, and the this.state.amount
-    //     // 
-    // }
-    // else{
-    //     console.log("did not work out")
-    // }
+  handleCommitBuy(stockName, newShareCount, newTradeHistoryObj, newCash) {
+    var stockPortfolio = this.state.stockPortfolio;
+    var newTradeHistory = this.state.tradeHistory; 
+    newTradeHistory.push(newTradeHistoryObj);  
+    console.log(stockPortfolio,     "          original passed portfolio")
+    var stockPortfolioIndex = stockPortfolio.findIndex(function(c) { 
+        return c.stockName == stockName; 
+    });
+    console.log(stockPortfolioIndex, "       line 58");
+    if(stockPortfolioIndex == -1){
+        var newArray = this.state.stockPortfolio;
+        console.log(newArray, "          line 61");
+        console.log(stockName, "     ", this.state.amount);
+
+        newArray.push({stockName: stockName, shareCount: this.state.amount});
+        var stockPortfolioUpdate = newArray;
+        console.log(stockPortfolioUpdate, "    line  stockPortfolioUpdate if there is no stock before");
+
+        apiHelper.updateAfterTrade(newCash, stockPortfolioUpdate, newTradeHistory)
+        .then((response)=>{
+        console.log(response, "..............trade.js, line 70"); 
+        })
+        .catch(function(response){
+        console.log(response, "trade.js ...............line 73"); 
+        });
+    } 
+    else{
+    var updatedStockObj = update(stockPortfolio[stockPortfolioIndex], {shareCount: {$set: newShareCount}}); 
+    console.log(updatedStockObj, "                updated stock obj if stock is there");
+    var newStockPortfolio = update(stockPortfolio, {
+        $splice: [[stockPortfolioIndex, 1, updatedStockObj]]
+    });
+    console.log(newStockPortfolio, "              line 129");
+
+    apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory)
+    .then((response)=>{
+      console.log(response, "..............trade.js, line 80"); 
+    })
+    .catch(function(response){
+      console.log(response, "trade.js ...............line 83"); 
+    });
+    // var newTradeHistory = this.state.tradeHistory; 
+
+    // newTradeHistory.push();  
+    //     apiHelper.updateAfterTrade(); // pass in cash, stockportfolio, stockhistory
+      }
   }
 
-  handleCommit(stockName, newShareCount, newTradeHistoryObj, newCash) {
+  handleCommitSell(stockName, newShareCount, newTradeHistoryObj, newCash) {
     var stockPortfolio = this.state.stockPortfolio;
     var stockPortfolioIndex = stockPortfolio.findIndex(function(c) { 
         return c.stockName == stockName; 
     });
 
     var updatedStockObj = update(stockPortfolio[stockPortfolioIndex], {shareCount: {$set: newShareCount}}); 
-
+    console.log(newShareCount); 
     var newStockPortfolio = update(stockPortfolio, {
         $splice: [[stockPortfolioIndex, 1, updatedStockObj]]
     });
-
+    console.log("+++++++++++", newStockPortfolio); 
     var newTradeHistory = this.state.tradeHistory; 
-    newTradeHistory.push();  
-        apiHelper.updateAfterTrade(); // pass in cash, stockportfolio, stockhistory
+    newTradeHistory.push(newTradeHistoryObj);  
+    console.log("trade.js  .....................line 77");
+    apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory)
+    .then((response)=>{
+      console.log(response, "..............trade.js, line 80"); 
+    })
+    .catch(function(response){
+      console.log(response, "trade.js ...............line 83"); 
+    });  // pass in cash, stockportfolio, stockhistory
+    // refresh the page here to update all state from db
   }
+
+  buy(stockName, stockPrice) {
+    var cost = stockPrice * this.state.amount; 
+    var newCash;
+    if(this.state.cash >= cost){
+      newCash = this.state.cash - cost;
+      if(!this.state.stockPortfolio.length){
+        var stocksAddedAfterBuying =  parseInt(this.state.amount);
+        var newCashValueAfterBuy = parseInt(this.state.cash) - parseInt(stockPrice) * parseInt(this.state.amount); 
+        var newTradeHistoryObj = {stockName: stockName, numberOfSharesBought: this.state.amount, sharePrice: {stockPrice}}
+        this.handleCommitBuy(stockName, stocksAddedAfterBuying, newTradeHistoryObj, newCashValueAfterBuy);        
+
+
+        // add logic if they are no stocks present in the array
+      } else if(this.state.stockPortfolio.length){
+        var stockThere = false;
+        // look for stock in index
+        // console.log(this.state.stockPortfolio, "     line 80 stock stuff")
+          for(var i = 0; i < this.state.stockPortfolio.length; i++){
+            if(this.state.stockPortfolio[i].stockName.trim() == stockName.trim()){
+              stockThere = true;
+              // console.log(this.state.stockPortfolio[i].shareCount);
+               var stocksAddedAfterBuying = parseInt(this.state.stockPortfolio[i].shareCount) + parseInt(this.state.amount);
+               var newCashValueAfterBuy = parseInt(this.state.cash) - parseInt(stockPrice) * parseInt(this.state.amount); 
+               var newTradeHistoryObj = {stockName: stockName, numberOfSharesBought: this.state.amount, sharePrice: {stockPrice}};
+              this.handleCommitBuy(stockName, stocksAddedAfterBuying,newTradeHistoryObj, newCashValueAfterBuy);
+              break;
+            } 
+          }
+          if(!stockThere){
+        console.log("stocks were not here at all so we added them");
+        var stocksAddedAfterBuying =  parseInt(this.state.amount);
+        var newCashValueAfterBuy = parseInt(this.state.cash) - parseInt(stockPrice) * parseInt(this.state.amount); 
+        var newTradeHistoryObj = {stockName: stockName, numberOfSharesBought: this.state.amount, sharePrice: {stockPrice}}
+        this.handleCommitBuy(stockName, stocksAddedAfterBuying, newTradeHistoryObj, newCashValueAfterBuy);    
+          }
+      }
+  } 
+  }
+
+
 
   sell(stockName, stockPrice){
     // find if stock name exist in stockPortfolio, check to see if its a array
-    console.log("trade.js, line 59");  
+    console.log("trade.js, line 84");  
     var stockFound = false; 
+
     for(var x=0; x<this.state.stockPortfolio.length; x++){
     	if(this.state.stockPortfolio[x].stockName == stockName){
+        console.log("trade.js  ................ LIne  89"); 
     		stockFound = true; 
-    		if(this.state.stockPortfolio[x].stockCount>=this.state.amount){
-    			// call api helper to sell 
+    		if(this.state.stockPortfolio[x].shareCount>=this.state.amount){
+          console.log("trade.js ........................line 92"); 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.state.amount; 
-    			var newCashValueAfterSell = stockPrice * this.state.amount; 
+    			var newCashValueAfterSell = this.state.cash + (stockPrice * this.state.amount); 
           var newTradeHistoryObj = {stockName: stockName, numberOfSharesSold: this.state.amount, sharePrice: {stockPrice}};
-          handleCommit(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
-
-          //var newstockPortfolio = 
-          // call apiHelper.updateAfterTrade(); 
+          this.handleCommitSell(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
     			break; 
     		}
     		else{
-    			// alert: Dont have enough shares to sell
+    			// alert: Dont have enough shares to sell 
     			break; 
     		}
     	}
+      console.log("Trade.js ..............104"); 
     }
+
     if(stockFound == false){
     	// alert user: Dont have any shares under this name 
     }
@@ -108,7 +194,7 @@ getInfo() {
   getDowPrice(){
     apiHelper.getDowPrice()
     .then((response) =>{
-      console.log("line 21"); 
+      console.log("line 118"); 
       var unsortedStringResponse = response.data.slice(4, response.data.length); 
       var parsedUnsortedResponse = JSON.parse(unsortedStringResponse);
       console.log(parsedUnsortedResponse); 
@@ -116,7 +202,7 @@ getInfo() {
       for(var x=0; x<parsedUnsortedResponse.length; x++){
         unsortedResponse.push({stockName: parsedUnsortedResponse[x].t, stockPrice: parseFloat(parsedUnsortedResponse[x].l)});
       }
-      console.log("line 29, Trade.js"); 
+      console.log("line 126, Trade.js"); 
       var sortedResponse = unsortedResponse.sort(function(a, b) {
               if (a.stockName < b.stockName) {
                 return -1;
@@ -126,7 +212,7 @@ getInfo() {
               }
               return 0;
             }); 
-      console.log("line 39"); 
+      console.log("line 136"); 
       console.log(sortedResponse); 
       this.setState({DowJonesArray: sortedResponse});
     })

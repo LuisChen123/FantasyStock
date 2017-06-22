@@ -19,6 +19,7 @@
     "bootstrap-select": "^1.12.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "immutability-helper": "^2.2.2",
     "js": "^0.1.0",
     "mongoose": "^4.7.5",
     "morgan": "^1.8.2",

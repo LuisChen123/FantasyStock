@@ -9,7 +9,7 @@ var apiHelper = {
 
 	getInfo: function(){
 		return axios.get("/getInfo");
-	}
+	},
 
 	updateAfterTrade: function(cash, stockPortfolio, tradeHistory){
 		return axios.post("/api/update", {
