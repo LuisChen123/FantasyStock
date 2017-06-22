@@ -112,10 +112,14 @@ class Portfolio extends Component {
                             </a>
                             <div className="circle-tile-content orange">
                                 <div className="circle-tile-description text-faded">
-                                    Alerts
+                                    Age:<br />
+                                    {this.state.age}
+                                    <br />
                                 </div>
                                 <div className="circle-tile-number text-faded">
-                                    9 New
+                                    Grade:<br />
+                                    {this.state.grade}
+                                    <br />
                                 </div>
                                 <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
                             </div>
@@ -130,7 +134,7 @@ class Portfolio extends Component {
                             </a>
                             <div className="circle-tile-content blue">
                                 <div className="circle-tile-description text-faded">
-                                    Tasks
+                                    Stocks Numbers:
                                 </div>
                                 <div className="circle-tile-number text-faded">
                                     10
@@ -140,44 +144,8 @@ class Portfolio extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-2 col-sm-6">
-                        <div className="circle-tile">
-                            <a href="#">
-                                <div className="circle-tile-heading red">
-                                    <i className="fa fa-shopping-cart fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div className="circle-tile-content red">
-                                <div className="circle-tile-description text-faded">
-                                    Orders
-                                </div>
-                                <div className="circle-tile-number text-faded">
-                                    24
-                                    <span id="sparklineC"></span>
-                                </div>
-                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-2 col-sm-6">
-                        <div className="circle-tile">
-                            <a href="#">
-                                <div className="circle-tile-heading purple">
-                                    <i className="fa fa-comments fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div className="circle-tile-content purple">
-                                <div className="circle-tile-description text-faded">
-                                    Mentions
-                                </div>
-                                <div className="circle-tile-number text-faded">
-                                    96
-                                    <span id="sparklineD"></span>
-                                </div>
-                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    
+                   
                      <div className="col-lg-2 col-sm-6">
                         <div className="circle-tile">
                             <a href="#">
@@ -196,6 +164,8 @@ class Portfolio extends Component {
                             </div>
                         </div>
                     </div>
+                    <nr />
+                    <AccountInfo stocks={this.state.stocks}/>
       </div>
 
     
