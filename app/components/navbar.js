@@ -16,7 +16,7 @@ const navbar = () => (
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
               <li className="active"><Link to = "/react">Home</Link></li>
-              <li><Link to = "/react/trade">trade</Link></li>
+              <li><Link to = "/react/trade">Trade</Link></li>
               
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
