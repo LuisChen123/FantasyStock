@@ -13,6 +13,7 @@ class Trade extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.buy = this.buy.bind(this); 
     this.sell = this.sell.bind(this); 
+    this.handleCommit = this.handleCommit.bind(this); 
   }
 
   componentDidMount() {
@@ -72,8 +73,10 @@ getInfo() {
     });
 
     var newTradeHistory = this.state.tradeHistory; 
-    newTradeHistory.push();  
-        apiHelper.updateAfterTrade(); // pass in cash, stockportfolio, stockhistory
+    newTradeHistory.push(newTradeHistoryObj);  
+    console.log("trade.js  .....................line 77");
+    apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory); // pass in cash, stockportfolio, stockhistory
+    // refresh the page here to update all state from db
   }
 
   sell(stockName, stockPrice){
@@ -84,14 +87,10 @@ getInfo() {
     	if(this.state.stockPortfolio[x].stockName == stockName){
     		stockFound = true; 
     		if(this.state.stockPortfolio[x].stockCount>=this.state.amount){
-    			// call api helper to sell 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.state.amount; 
     			var newCashValueAfterSell = stockPrice * this.state.amount; 
           var newTradeHistoryObj = {stockName: stockName, numberOfSharesSold: this.state.amount, sharePrice: {stockPrice}};
           handleCommit(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
-
-          //var newstockPortfolio = 
-          // call apiHelper.updateAfterTrade(); 
     			break; 
     		}
     		else{

@@ -106,9 +106,9 @@ var dbManager = {
 		console.log("dbManager.js, line 104"); 
 		userModel.findById(username: name, function (err, user) {
   				if (err) return handleError(err);
-  				user.cash = res.cash;
-  				user.stockPortfolio = res.stockPortfolio;
-  				user.tradeHistory = res.tradeHistory; 
+  				user.cash = res.updatedCash;
+  				user.stockPortfolio = res.updatedStockPortfolio;
+  				user.tradeHistory = res.updatedTradeHistory; 
   				user.save(function (err, updatedUser) {
     				if (err) return handleError(err);
     				//res.send(updatedUser);
