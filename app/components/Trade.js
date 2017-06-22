@@ -5,7 +5,7 @@ import apiHelper from "../apiHelper/apiHelper.js";
 class Trade extends Component {
   constructor() {
     super();
-    this.state = { DowJonesArray: [], interval: "" , cash: 0, amount:"", stockPortfolio: []};
+    this.state = { DowJonesArray: [], interval: "" , cash: 0, amount:"", stockPortfolio: [], tradeHistory: []};
 
     this.getDowPrice = this.getDowPrice.bind(this);
     this.getInfo = this.getInfo.bind(this);
@@ -30,8 +30,8 @@ getInfo() {
     apiHelper.getInfo().then((res) =>{
       // console.log(res);
       // console.log(res.data.cash * 5, "            line 30 trade.js")
-      this.setState({ cash: res.data.cash, stockPortfolio: res.data.portfolio})
-      console.log(this.state.stockPortfolio, "        line 33 trade.js");
+      this.setState({ cash: res.data.cash, stockPortfolio: res.data.portfolio, tradeHistory: res.data.tradeHistory})
+      console.log(this.state.stockPortfolio, "      ATTENTION  line 34 trade.js");
     });
   }
 
@@ -58,6 +58,20 @@ getInfo() {
     // }
   }
 
+  handleCommit(stockName, newShareCount) {
+    var stockPortfolio = this.state.stockPortfolio;
+    var stockPortfolioIndex = stockPortfolio.findIndex(function(c) { 
+        return c.stockName == stockName; 
+    });
+
+    var updatedStockObj = update(stockPortfolio[stockPortfolioIndex], {shareCount: {$set: newShareCount}}); 
+
+    var newStockPortfolio = update(stockPortfolio, {
+        $splice: [[stockPortfolioIndex, 1, updatedStockObj]]
+    });
+        apiHelper.updateAfterTrade(); // pass in cash, stockportfolio, stockhistory
+  }
+
   sell(stockName, stockPrice){
     // find if stock name exist in stockPortfolio, check to see if its a array
     console.log("trade.js, line 59");  
@@ -69,6 +83,8 @@ getInfo() {
     			// call api helper to sell 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.amount; 
     			var newCashValueAfterSell = stockPrice * this.amount; 
+          // map out both 
+
           //var newstockPortfolio = 
           // call apiHelper.updateAfterTrade(); 
     			break; 
@@ -130,8 +146,8 @@ render() {
                     <div key={i} className="input-group">
                           <div className="input-group-btn">
                             <button onClick={() => this.buy(el.stockName, el.stockPrice)} className="btn btn-default">Buy</button>
-                              <button type="button" className="btn btn-default">Trade</button>
-                              <button type="button" className="btn btn-default">Info</button>
+                            <button type="button" onClick={() => this.sell(el.stockName, el.stockPrice)} className="btn btn-default">Trade</button>
+                            <button type="button" className="btn btn-default">Info</button>
                           </div>
                     </div>
 
