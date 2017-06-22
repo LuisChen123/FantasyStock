@@ -11,6 +11,13 @@ var apiHelper = {
 		return axios.get("/getInfo");
 	}
 
+	updateAfterBuy: function(){
+
+	}
+
+	updateAfterSell: function(){
+		
+	}
 };
 
 export default apiHelper; 
