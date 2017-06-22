@@ -11,6 +11,14 @@ var apiHelper = {
 		return axios.get("/getInfo");
 	}
 
+	updateAfterTrade: function(cash, stockPortfolio, tradeHistory){
+		return axios.post("/api/update", {
+			updatedCash: cash,
+			updatedStockPortfolio: stockPortfolio,
+			updatedTradeHistory: tradeHistory
+		}); 
+	}
+
 };
 
 export default apiHelper; 
