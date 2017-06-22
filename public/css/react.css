@@ -3,6 +3,11 @@ body{
           background-size: cover;
 }
 
+#app{
+        background-image: url("pic/2.jpg");
+          background-size: cover;
+}
+
 @media (min-width: 768px){
 .circle-tile {
     margin-bottom: 30px;
