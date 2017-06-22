@@ -12,7 +12,7 @@ var apiHelper = {
 	}
 
 	updateAfterTrade: function(){
-		return axios.get("/api/update"); 
+		return axios.post("/api/update"); 
 	}
 
 };

@@ -24,6 +24,7 @@ var dbManager = {
 	// },
 
 	userModel_SaveUser: function(req, res) {
+
 		// console.log(req.body+ "this is 18")
     	var body = req.body;
 		console.log("this is userModel_SaveUser" )
@@ -101,10 +102,13 @@ var dbManager = {
 	}, 
 
 	userModel_PostTradeUpdate: function(req, res){
+		var name = req.cookies.SSID;
 		console.log("dbManager.js, line 104"); 
-		userModel.findById(id, function (err, user) {
+		userModel.findById(username: name, function (err, user) {
   				if (err) return handleError(err);
   				user.cash = res.cash;
+  				user.stockPortfolio = res.stockPortfolio;
+  				user.tradeHistory = res.tradeHistory; 
   				user.save(function (err, updatedUser) {
     				if (err) return handleError(err);
     				//res.send(updatedUser);

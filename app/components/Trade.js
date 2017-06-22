@@ -65,6 +65,7 @@ getInfo() {
     			// call api helper to sell 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.amount; 
     			var newCashValueAfterSell = stockPrice * this.amount; 
+          //var newstockPortfolio = 
           // call apiHelper.updateAfterTrade(); 
     			break; 
     		}
