@@ -5,7 +5,6 @@ class AccountInfo extends Component {
     super();
   
   }
-
   render() {
     return (
         <div className="panel-body text-center">
