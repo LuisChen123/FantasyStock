@@ -102,18 +102,34 @@ var dbManager = {
 	}, 
 
 	userModel_PostTradeUpdate: function(req, res){
-		var name = req.cookies.SSID;
+		var username = req.cookies.SSID;
 		console.log("dbManager.js, line 104"); 
-		userModel.findById(username: name, function (err, user) {
-  				if (err) return handleError(err);
-  				user.cash = res.updatedCash;
-  				user.stockPortfolio = res.updatedStockPortfolio;
-  				user.tradeHistory = res.updatedTradeHistory; 
-  				user.save(function (err, updatedUser) {
-    				if (err) return handleError(err);
-    				//res.send(updatedUser);
-  				});
-		});
+		userModel.update({username: username}, 
+						 {$set: {cash:req.updatedCash, tradeHistory: req.updatedTradeHistory, portfolio: req.updatedStockPortfolio}},
+						 function(error, edited) { 
+    							// Log any errors from mongojs
+    							if (error) {
+      								console.log(error);
+      								res.send(error);
+    							}
+    							// Otherwise, send the mongojs response to the browser
+    							// This will fire off the success function of the ajax request
+    							else {
+      								console.log(edited);
+      								res.send(edited);
+    							}
+  						 }
+  		);
+		// userModel.find({username: username}, function (err, user) {
+  // 		if (err) return handleError(err);
+  // 		user.cash = res.updatedCash;
+  // 		user.stockPortfolio = res.updatedStockPortfolio;
+  // 		user.tradeHistory = res.updatedTradeHistory; 
+  // 		user.save(function (err, updatedUser) {
+  //   		if (err) return handleError(err);
+  //   		res.send(updatedUser);
+  // 			});
+  // 		});
 
 	}
 	/*

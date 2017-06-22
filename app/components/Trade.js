@@ -19,7 +19,7 @@ class Trade extends Component {
   componentDidMount() {
     this.getDowPrice();
     this.getInfo();
-    var intervalId = setInterval(this.getDowPrice, 3000);
+    var intervalId = setInterval(this.getDowPrice, 300000);
     this.setState({interval: intervalId});
   }
   
@@ -75,30 +75,41 @@ getInfo() {
     var newTradeHistory = this.state.tradeHistory; 
     newTradeHistory.push(newTradeHistoryObj);  
     console.log("trade.js  .....................line 77");
-    apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory); // pass in cash, stockportfolio, stockhistory
+    apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory)
+    .then((response)=>{
+      console.log(response); 
+    })
+    .catch(function(response){
+      console.log(response); 
+    });  // pass in cash, stockportfolio, stockhistory
     // refresh the page here to update all state from db
   }
 
   sell(stockName, stockPrice){
     // find if stock name exist in stockPortfolio, check to see if its a array
-    console.log("trade.js, line 59");  
+    console.log("trade.js, line 84");  
     var stockFound = false; 
+
     for(var x=0; x<this.state.stockPortfolio.length; x++){
     	if(this.state.stockPortfolio[x].stockName == stockName){
+        console.log("trade.js  ................ LIne  89"); 
     		stockFound = true; 
-    		if(this.state.stockPortfolio[x].stockCount>=this.state.amount){
+    		if(this.state.stockPortfolio[x].shareCount>=this.state.amount){
+          console.log("trade.js ........................line 92"); 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.state.amount; 
-    			var newCashValueAfterSell = stockPrice * this.state.amount; 
+    			var newCashValueAfterSell = this.state.cash + (stockPrice * this.state.amount); 
           var newTradeHistoryObj = {stockName: stockName, numberOfSharesSold: this.state.amount, sharePrice: {stockPrice}};
-          handleCommit(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
+          this.handleCommit(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
     			break; 
     		}
     		else{
-    			// alert: Dont have enough shares to sell
+    			// alert: Dont have enough shares to sell 
     			break; 
     		}
     	}
+      console.log("Trade.js ..............104"); 
     }
+
     if(stockFound == false){
     	// alert user: Dont have any shares under this name 
     }
@@ -107,7 +118,7 @@ getInfo() {
   getDowPrice(){
     apiHelper.getDowPrice()
     .then((response) =>{
-      console.log("line 21"); 
+      console.log("line 118"); 
       var unsortedStringResponse = response.data.slice(4, response.data.length); 
       var parsedUnsortedResponse = JSON.parse(unsortedStringResponse);
       console.log(parsedUnsortedResponse); 
@@ -115,7 +126,7 @@ getInfo() {
       for(var x=0; x<parsedUnsortedResponse.length; x++){
         unsortedResponse.push({stockName: parsedUnsortedResponse[x].t, stockPrice: parseFloat(parsedUnsortedResponse[x].l)});
       }
-      console.log("line 29, Trade.js"); 
+      console.log("line 126, Trade.js"); 
       var sortedResponse = unsortedResponse.sort(function(a, b) {
               if (a.stockName < b.stockName) {
                 return -1;
@@ -125,7 +136,7 @@ getInfo() {
               }
               return 0;
             }); 
-      console.log("line 39"); 
+      console.log("line 136"); 
       console.log(sortedResponse); 
       this.setState({DowJonesArray: sortedResponse});
     })
