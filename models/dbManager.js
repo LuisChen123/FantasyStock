@@ -102,10 +102,13 @@ var dbManager = {
 	}, 
 
 	userModel_PostTradeUpdate: function(req, res){
+		console.log(req.body.newStockPortfolio, "-------------------"); 
+		console.log(req.body.updatedTradeHistory); 
+		req.body.updatedTradeHistory.forEach(a=>a.sharePrice = parseInt(a.sharePrice.stockPrice)); 
 		var username = req.cookies.SSID;
 		console.log("dbManager.js, line 104"); 
 		userModel.update({username: username}, 
-						 {$set: {cash:req.updatedCash, tradeHistory: req.updatedTradeHistory, portfolio: req.updatedStockPortfolio}},
+						 {$set: {cash:parseFloat(req.body.updatedCash), tradeHistory: req.body.updatedTradeHistory, portfolio: req.body.updatedStockPortfolio}},
 						 function(error, edited) { 
     							// Log any errors from mongojs
     							if (error) {
