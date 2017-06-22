@@ -5,21 +5,17 @@ class AccountInfo extends Component {
     super();
   
   }
-
   render() {
     return (
         <div className="panel-body text-center">
           {/* Here we use a map function to loop through an array in JSX */}
-          <h1> Stocks you own </h1>
-          <ul className="list-unstyled">
+            <select className="selectpicker dropup" data-size="5">
             {this.props.stocks.map((item, i)=> {
-            return (
-              <li key ={i} className="col-md-3"> 
-                  <p>{item.stockName} {item.shareCount}</p>
-              </li>
+            return (      
+                <option key ={i}>{item.stockName}:{item.shareCount}shares</option>     
             );
           })}
-       </ul>
+          </select>
       </div>
     );
   }

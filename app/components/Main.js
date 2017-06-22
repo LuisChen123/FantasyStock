@@ -4,7 +4,6 @@ import Navbar from "./navbar.js";
 import Footer from "./footer.js";
 
 // req.cookie.SSID
-
 class Main extends Component {
     // Here we render the function
   render() {
@@ -12,10 +11,9 @@ class Main extends Component {
       <div className = "container"> 
        <Navbar /> 
           {this.props.children}
-       <Footer /> 
+       <Footer />
       </div> 
     ); 
   }
 }
-
 export default Main;
