@@ -29,8 +29,8 @@ getInfo() {
     apiHelper.getInfo().then((res) =>{
       // console.log(res);
       // console.log(res.data.cash * 5, "            line 30 trade.js")
-      this.setState({ cash: res.data.cash})
-      console.log(this.state.cash);
+      this.setState({ cash: res.data.cash, stockPortfolio: res.data.portfolio})
+      console.log(this.state.stockPortfolio, "        line 33 trade.js");
     });
   }
 
@@ -43,14 +43,17 @@ getInfo() {
     console.log("Search amount ", this.state.amount);
   }
 
-  buy(stockName, stockPrice){
+  buy(stockName, stockPrice) {
     var cost = stockPrice * this.state.amount; 
-    if(this.state.cash >= cost){
-        // will need to write this function: apiHelper.updatePurchase(); 
-    }
-    else{
-        // alert goes here
-    }
+    console.log(cost, "   line 48", this.state.cash);
+    // if(this.state.cash >= cost){
+    //     // will need to write this function: apiHelper.updatePurchase(); 
+    //     // have an API function will have the person's stockprice, stockName, and the this.state.amount
+    //     // 
+    // }
+    // else{
+    //     console.log("did not work out")
+    // }
   }
 
   sell(stockName, stockPrice){
@@ -95,7 +98,7 @@ getInfo() {
 
 render() {
         
-    var mappedResults = this.state.DowJonesArray.map(function(el){
+    var mappedResults = this.state.DowJonesArray.map( (el, i) =>{
         return <div className ="container" key={el.stockName}>    
                 <div className = "panel-body">
                     <h3>  
@@ -106,13 +109,12 @@ render() {
                         Trading @ <span className ="badge">$ {el.stockPrice}</span>
                     </span></h3>
 
-                    <div className="input-group">
+                    <div key={i} className="input-group">
                           <div className="input-group-btn">
-                            <button type="button" className="btn btn-default">Buy</button>
+                            <button onClick={() => this.buy(el.stockName, el.stockPrice)} className="btn btn-default">Buy</button>
                               <button type="button" className="btn btn-default">Trade</button>
                               <button type="button" className="btn btn-default">Info</button>
                           </div>
-                          <input type="text" className="form-control"/>
                     </div>
 
                 </div> 
