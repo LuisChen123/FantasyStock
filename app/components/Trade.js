@@ -55,7 +55,8 @@ getInfo() {
   }
 
   sell(stockName, stockPrice){
-    // find if stock name exist in stockPortfolio, check to see if its a array 
+    // find if stock name exist in stockPortfolio, check to see if its a array
+    console.log("trade.js, line 59");  
     var stockFound = false; 
     for(var x=0; x<this.state.stockPortfolio.length; x++){
     	if(this.state.stockPortfolio[x].stockName == stockName){
@@ -64,6 +65,7 @@ getInfo() {
     			// call api helper to sell 
     			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.amount; 
     			var newCashValueAfterSell = stockPrice * this.amount; 
+          // call apiHelper.updateAfterTrade(); 
     			break; 
     		}
     		else{

@@ -101,7 +101,7 @@ var dbManager = {
 	}, 
 
 	userModel_PostTradeUpdate: function(req, res){
-
+		console.log("dbManager.js, line 104"); 
 		userModel.findById(id, function (err, user) {
   				if (err) return handleError(err);
   				user.cash = res.cash;
