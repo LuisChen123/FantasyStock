@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js"; 
+import update from 'immutability-helper';
 
 class Trade extends Component {
   constructor() {
@@ -58,7 +59,7 @@ getInfo() {
     // }
   }
 
-  handleCommit(stockName, newShareCount) {
+  handleCommit(stockName, newShareCount, newTradeHistoryObj, newCash) {
     var stockPortfolio = this.state.stockPortfolio;
     var stockPortfolioIndex = stockPortfolio.findIndex(function(c) { 
         return c.stockName == stockName; 
@@ -69,6 +70,9 @@ getInfo() {
     var newStockPortfolio = update(stockPortfolio, {
         $splice: [[stockPortfolioIndex, 1, updatedStockObj]]
     });
+
+    var newTradeHistory = this.state.tradeHistory; 
+    newTradeHistory.push();  
         apiHelper.updateAfterTrade(); // pass in cash, stockportfolio, stockhistory
   }
 
@@ -79,11 +83,12 @@ getInfo() {
     for(var x=0; x<this.state.stockPortfolio.length; x++){
     	if(this.state.stockPortfolio[x].stockName == stockName){
     		stockFound = true; 
-    		if(this.state.stockPortfolio[x].stockCount>=this.amount){
+    		if(this.state.stockPortfolio[x].stockCount>=this.state.amount){
     			// call api helper to sell 
-    			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.amount; 
-    			var newCashValueAfterSell = stockPrice * this.amount; 
-          // map out both 
+    			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.state.amount; 
+    			var newCashValueAfterSell = stockPrice * this.state.amount; 
+          var newTradeHistoryObj = {stockName: stockName, numberOfSharesSold: this.state.amount, sharePrice: {stockPrice}};
+          handleCommit(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
 
           //var newstockPortfolio = 
           // call apiHelper.updateAfterTrade(); 
