@@ -11,13 +11,10 @@ var apiHelper = {
 		return axios.get("/getInfo");
 	}
 
-	updateAfterBuy: function(){
-
+	updateAfterTrade: function(){
+		return axios.get("/api/update"); 
 	}
 
-	updateAfterSell: function(){
-		
-	}
 };
 
 export default apiHelper; 

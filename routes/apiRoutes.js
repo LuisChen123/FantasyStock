@@ -11,6 +11,7 @@ router.get("/saved", function(req, res){
 	}); 
 });
 
+router.post("/update", dbManager.userModel_PostTradeUpdate);
 // router.post("/saved", function(req, res){
 // 	console.log("inside post /saved");
 // 	var articleID = req.body.id;
