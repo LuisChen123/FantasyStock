@@ -140,7 +140,7 @@ class Portfolio extends Component {
                                     10
                                     <span id="sparklineB"></span>
                                 </div>
-                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
+                                <AccountInfo stocks={this.state.stocks}/>
                             </div>
                         </div>
                     </div>
@@ -158,14 +158,14 @@ class Portfolio extends Component {
                                     Revenue
                                 </div>
                                 <div className="circle-tile-number text-faded">
-                                    $32,384
+                                    ${this.state.cash}
                                 </div>
                                 <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <nr />
-                    <AccountInfo stocks={this.state.stocks}/>
+
       </div>
 
     

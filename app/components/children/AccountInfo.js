@@ -9,16 +9,13 @@ class AccountInfo extends Component {
     return (
         <div className="panel-body text-center">
           {/* Here we use a map function to loop through an array in JSX */}
-          <h1> Stocks you own </h1>
-          <ul className="list-unstyled">
+            <select class="selectpicker dropup">
             {this.props.stocks.map((item, i)=> {
-            return (
-              <li key ={i} className="col-md-3"> 
-                  <p>{item.stockName} {item.shareCount}</p>
-              </li>
+            return (      
+                <option>{item.stockName}:{item.shareCount}shares</option>     
             );
           })}
-       </ul>
+          </select>
       </div>
     );
   }
