@@ -11,6 +11,7 @@ class Trade extends Component {
     this.getInfo = this.getInfo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.buy = this.buy.bind(this); 
+    this.sell = this.sell.bind(this); 
   }
 
   componentDidMount() {
@@ -57,14 +58,30 @@ getInfo() {
   }
 
   sell(stockName, stockPrice){
-    // find if stock name exist in stockPortfolio
-    // if true, we get index of where it is
-    // 
-    // use stockPortfolio[saved indexof].stockname to pull out the amount of shares they have called shares
-    // if shares is greater than this.state.amount we are good to sell
-    // 
+    // find if stock name exist in stockPortfolio, check to see if its a array
+    console.log("trade.js, line 59");  
+    var stockFound = false; 
+    for(var x=0; x<this.state.stockPortfolio.length; x++){
+    	if(this.state.stockPortfolio[x].stockName == stockName){
+    		stockFound = true; 
+    		if(this.state.stockPortfolio[x].stockCount>=this.amount){
+    			// call api helper to sell 
+    			var stocksLeftAfterSelling = this.state.stockPortfolio[x].stockCount - this.amount; 
+    			var newCashValueAfterSell = stockPrice * this.amount; 
+          //var newstockPortfolio = 
+          // call apiHelper.updateAfterTrade(); 
+    			break; 
+    		}
+    		else{
+    			// alert: Dont have enough shares to sell
+    			break; 
+    		}
+    	}
+    }
+    if(stockFound == false){
+    	// alert user: Dont have any shares under this name 
+    }
   }
-
 
   getDowPrice(){
     apiHelper.getDowPrice()
