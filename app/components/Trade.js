@@ -47,6 +47,7 @@ getInfo() {
   buy(stockName, stockPrice) {
     var cost = stockPrice * this.state.amount; 
     console.log(cost, "   line 48", this.state.cash);
+    console.log("something");
     // if(this.state.cash >= cost){
     //     // will need to write this function: apiHelper.updatePurchase(); 
     //     // have an API function will have the person's stockprice, stockName, and the this.state.amount

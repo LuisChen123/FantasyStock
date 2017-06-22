@@ -11,9 +11,9 @@ var apiHelper = {
 		return axios.get("/getInfo");
 	}
 
-	// updateAfterTrade: function(){
-	// 	return axios.post("/api/update"); 
-	// }
+	updateAfterTrade: function(){
+		return axios.post("/api/update"); 
+	}
 
 };
 
