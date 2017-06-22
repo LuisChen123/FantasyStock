@@ -98,6 +98,19 @@ var dbManager = {
 		// 		});	
 		// 	});
   		// });
+	}, 
+
+	userModel_PostTradeUpdate: function(req, res){
+
+		userModel.findById(id, function (err, user) {
+  				if (err) return handleError(err);
+  				user.cash = res.cash;
+  				user.save(function (err, updatedUser) {
+    				if (err) return handleError(err);
+    				//res.send(updatedUser);
+  				});
+		});
+
 	}
 	/*
 	// will check to see if user has the money to make the purchase, if so then user info will be updated,

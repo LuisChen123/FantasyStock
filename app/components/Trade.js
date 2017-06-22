@@ -77,7 +77,6 @@ getInfo() {
     }
   }
 
-
   getDowPrice(){
     apiHelper.getDowPrice()
     .then((response) =>{
