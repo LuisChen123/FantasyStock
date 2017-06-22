@@ -88,40 +88,21 @@ class Portfolio extends Component {
                                 </div>
                             </a>
                             <div className="circle-tile-content dark-blue">
-                                <div className="circle-tile-description text-faded">
-                                    FirstName:{this.state.firstName}
+                                <div className="circle-tile-description text-faded" id = "userNameAndInformation">
+                                    LastName:
+                                    <br />{this.state.lastName}
                                     <br />
-                                    LastName:{this.state.lastName}
-                                    <br />                                  
+                                    firstName:                           
                                 </div>
                                 <div className="circle-tile-number text-faded">
-                                    age:{this.state.age}
-                                    <br />
-                                    grade:{this.state.grade}
+                                    {this.state.firstName}
+                              
                                     <span id="sparklineA"></span>
                                 </div>
                                 <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-2 col-sm-6">
-                        <div className="circle-tile">
-                            <a href="#">
-                                <div className="circle-tile-heading green">
-                                    <i className="fa fa-money fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div className="circle-tile-content green">
-                                <div className="circle-tile-description text-faded">
-                                    Revenue
-                                </div>
-                                <div className="circle-tile-number text-faded">
-                                    $32,384
-                                </div>
-                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    </div>        
                     <div className="col-lg-2 col-sm-6">
                         <div className="circle-tile">
                             <a href="#">
@@ -192,6 +173,24 @@ class Portfolio extends Component {
                                 <div className="circle-tile-number text-faded">
                                     96
                                     <span id="sparklineD"></span>
+                                </div>
+                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                     <div className="col-lg-2 col-sm-6">
+                        <div className="circle-tile">
+                            <a href="#">
+                                <div className="circle-tile-heading green">
+                                    <i className="fa fa-money fa-fw fa-3x"></i>
+                                </div>
+                            </a>
+                            <div className="circle-tile-content green">
+                                <div className="circle-tile-description text-faded">
+                                    Revenue
+                                </div>
+                                <div className="circle-tile-number text-faded">
+                                    $32,384
                                 </div>
                                 <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
                             </div>
