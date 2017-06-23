@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class AccountInfo extends Component {
   constructor() {
     super();
+    
   
   }
   render() {
@@ -12,7 +13,7 @@ class AccountInfo extends Component {
             <select className="selectpicker" data-size="5" data-live-search="true">
             {this.props.stocks.map((item, i)=> {
             return (      
-                <option key ={i}>{item.stockName}:{item.shareCount}shares</option>     
+                <option key ={i}>{item.stockName}:  {item.shareCount}  shares</option>     
             );
           })}
           </select>

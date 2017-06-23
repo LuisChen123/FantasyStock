@@ -218,7 +218,7 @@ class Trade extends Component {
         }
       }
   } else{
-    Popup.alert('Hello, look at me');
+  
     this.getInfo();
   }
     
