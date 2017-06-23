@@ -102,10 +102,15 @@ var dbManager = {
 	}, 
 
 	userModel_PostTradeUpdate: function(req, res){
-		console.log(req.body.newStockPortfolio, "-------------------"); 
-		console.log(req.body.updatedTradeHistory); 
-		req.body.updatedTradeHistory.forEach(a=>a.sharePrice = parseInt(a.sharePrice.stockPrice)); 
+		console.log("updated stock portfolio ", req.body.updatedStockPortfolio); 
+		console.log("updated tradeHistory ", req.body.updatedTradeHistory); 
+		console.log("updated Cash $",req.body.updatedCash);
+
+		// req.body.updatedTradeHistory.forEach(a=>a.sharePrice = parseInt(a.sharePrice.stockPrice)); 
+		
+		console.log("updated trade history after parseInt",req.body.updatedTradeHistory);
 		var username = req.cookies.SSID;
+		console.log(username);
 		console.log("dbManager.js, line 104"); 
 		userModel.update({username: username}, 
 						 {$set: {cash:parseFloat(req.body.updatedCash), tradeHistory: req.body.updatedTradeHistory, portfolio: req.body.updatedStockPortfolio}},
