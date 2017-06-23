@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js";
 import update from 'immutability-helper';
+import Popup from 'react-popup';
 
 class Trade extends Component {
   constructor() {
@@ -165,7 +166,10 @@ class Trade extends Component {
   }
 
   buy(stockName, stockPrice) {
-    var cost = stockPrice * this.state.amount;
+
+    var cost = stockPrice * this.state.amount; 
+    console.log("this is the cost at line 135" , cost);
+
     var stockPrice = stockPrice;
     console.log(stockPrice);
     var newCash;
@@ -213,7 +217,11 @@ class Trade extends Component {
           this.handleCommitBuy(stockName, stocksAddedAfterBuying, newTradeHistoryObj, newCashValueAfterBuy);
         }
       }
-    }
+  } else{
+    Popup.alert('Hello, look at me');
+    this.getInfo();
+  }
+    
   }
 
   sell(stockName, stockPrice) {
@@ -223,32 +231,33 @@ class Trade extends Component {
     var stockPrice = stockPrice;
     console.log(stockPrice);
 
-    for (var x = 0; x < this.state.stockPortfolio.length; x++) {
-      if (this.state.stockPortfolio[x].stockName == stockName) {
-        console.log("trade.js  ................ LIne  89");
-        stockFound = true;
-        if (this.state.stockPortfolio[x].shareCount >= this.state.amount) {
+    for(var x=0; x<this.state.stockPortfolio.length; x++){
+    	if(this.state.stockPortfolio[x].stockName == stockName){
+        console.log("trade.js  ................ LIne  89"); 
+    		stockFound = true; 
+    		if(this.state.stockPortfolio[x].shareCount>=this.state.amount){
 
-          console.log("trade.js ........................line 92");
-          var stocksLeftAfterSelling = parseInt(this.state.stockPortfolio[x].shareCount) - parseInt(this.state.amount);
-          var newCashValueAfterSell = parseFloat(this.state.cash) + (parseFloat(stockPrice) * parseFloat(this.state.amount));
-          var newTradeHistoryObj = {
-            stockName: stockName,
-            numberOfSharesSold: parseInt(this.state.amount),
-            sharePrice: parseFloat(stockPrice)
-          };
-          this.handleCommitSell(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell);
-          break;
-        } else {
-          // alert: Dont have enough shares to sell
-          break;
-        }
-      }
-      console.log("Trade.js ..............104");
+          console.log("trade.js ........................line 92"); 
+    			var stocksLeftAfterSelling = parseInt(this.state.stockPortfolio[x].shareCount) - parseInt(this.state.amount); 
+    			var newCashValueAfterSell = parseFloat(this.state.cash) + (parseFloat(stockPrice) * parseFloat(this.state.amount)); 
+          var newTradeHistoryObj = {stockName: stockName, numberOfSharesSold: parseInt(this.state.amount), sharePrice: parseFloat(stockPrice)};
+          this.handleCommitSell(stockName, stocksLeftAfterSelling, newTradeHistoryObj, newCashValueAfterSell); 
+    			break; 
+    		}
+    		else{
+    			// alert: Dont have enough shares to sell 
+          console.log("not enought shares to sell")
+          this.getInfo();
+    			break; 
+    		}
+    	}
+      console.log("Trade.js ..............104"); 
     }
 
-    if (stockFound == false) {
-      // alert user: Dont have any shares under this name
+    if(stockFound == false){
+    	// alert user: Dont have any shares under this name 
+      console.log("do not have this share to sell")
+      this.getInfo();
     }
   }
 

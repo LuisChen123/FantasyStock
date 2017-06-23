@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  
 
   $("#register-submit").on("click", function(event) {
 
@@ -44,6 +44,10 @@ $(document).ready(function() {
     
     $.post("/logIn", returnUser).then(function(data){
       console.log(data, "               index js line 46");
+      if(data == "/"){
+        alert("Wrong username or password");
+        window.location = data;
+      }
       window.location = data;
       
     })
