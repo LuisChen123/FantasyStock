@@ -33,7 +33,7 @@ getInfo() {
     apiHelper.getInfo().then((res) =>{
       // console.log(res);
       // console.log(res.data.cash * 5, "            line 30 trade.js")
-      this.setState({ cash: res.data.cash, stockPortfolio: res.data.portfolio, tradeHistory: res.data.tradeHistory})
+      this.setState({ cash: res.data.cash, stockPortfolio: res.data.portfolio, tradeHistory: res.data.tradeHistory, amount: ""})
       console.log(this.state.stockPortfolio, "      ATTENTION  line 34 trade.js");
     });
   }
@@ -73,6 +73,7 @@ getInfo() {
         apiHelper.updateAfterTrade(newCash, stockPortfolioUpdate, newTradeHistory)
         .then((response)=>{
         console.log(response, "..............trade.js, line 75"); 
+        this.getInfo();
         })
         .catch(function(response){
         console.log(response, "trade.js ...............line 78"); 
@@ -89,6 +90,7 @@ getInfo() {
     apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory)
     .then((response)=>{
       console.log(response, "..............trade.js, line 80"); 
+      this.getInfo();
     })
     .catch(function(response){
       console.log(response, "trade.js ...............line 83"); 
@@ -119,6 +121,7 @@ getInfo() {
     apiHelper.updateAfterTrade(newCash, newStockPortfolio, newTradeHistory)
     .then((response)=>{
       console.log(response, "..............trade.js, line 80"); 
+      this.getInfo();
     })
     .catch(function(response){
       console.log(response, "trade.js ...............line 83"); 
