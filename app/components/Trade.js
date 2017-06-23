@@ -225,7 +225,7 @@ render() {
         
     var mappedResults = this.state.DowJonesArray.map( (el, i) =>{
         return <div className ="container" key={el.stockName}>    
-                <div className = "panel-body">
+                <div className = "panel-body" key={el.stockName}>
                     <h3>  
                         <span className = "label label-info">{el.stockName}</span> 
                     </h3>
@@ -260,7 +260,8 @@ render() {
                 onChange={this.handleChange}
                 required
               />
-               {mappedResults}
+              <div>{mappedResults}</div>
+               
         </div>
     );
   }
