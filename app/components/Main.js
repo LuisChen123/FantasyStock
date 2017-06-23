@@ -14,6 +14,7 @@ class Main extends Component {
        <Navbar /> 
           {this.props.children}
        <Footer />
+       
       </div> 
     ); 
   }
