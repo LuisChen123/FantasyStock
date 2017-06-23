@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js";
 import update from 'immutability-helper';
-import Popup from 'react-popup';
+
 
 class Trade extends Component {
   constructor() {
