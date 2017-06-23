@@ -13,17 +13,18 @@ class Portfolio extends Component {
     constructor() {
         super();
         this.state = {
-            objectArray:[],
+            objectArray: [],
+            userName:"",
             firstName: "",
             lastName: "",
             age: "",
             grade: "",
             cash: 0,
             stocks: [],
-            numberOfArray:0,
-            stocksHold:[],
-            numberOfSharesHold:[],
-            tradeHistory:[]
+            numberOfArray: 0,
+            stocksHold: [],
+            numberOfSharesHold: [],
+            tradeHistory: []
 
         };
 
@@ -44,19 +45,23 @@ class Portfolio extends Component {
             .then((res) => {
                 // console.log(res); console.log(res.data.firstName)
                 console.log("porfolio stuff", res);
-                console.log(res.data.portfolio,"    portfolio data");
+                console.log(res.data.portfolio, "    portfolio data");
                 console.log(res.data.tradeHistory, "     trade history")
                 this.setState({
-                    objectArray:res.data.portfolio,
-                    firstName: res.data.firstName, 
-                    lastName: res.data.lastName, 
-                    age: res.data.age, 
+                    objectArray: res.data.portfolio,
+                    firstName: res.data.firstName,
+                    lastName: res.data.lastName,
+                    userName:res.data.username,
+                    age: res.data.age,
                     grade: res.data.grade,
-                    cash:res.data.cash.toFixed(2),
-                    numberOfArray:res.data.portfolio.length,
+                    cash: res
+                        .data
+                        .cash
+                        .toFixed(2),
+                    numberOfArray: res.data.portfolio.length,
                     tradeHistory: res.data.tradeHistory
-                   
-            })
+
+                })
             });
     }
 
@@ -126,7 +131,7 @@ class Portfolio extends Component {
                                     {this.state.numberOfArray}
                                     <span id="sparklineB"></span>
                                 </div>
-                                <AccountInfo stocks={this.state.objectArray} />
+                                <AccountInfo stocks={this.state.objectArray}/>
                             </div>
                         </div>
                     </div>
@@ -151,7 +156,36 @@ class Portfolio extends Component {
                             </div>
                         </div>
                     </div>
+
+                    
+                    <div className="col-lg-2 col-sm-6">
+                        <div className="circle-tile">
+                            <a href="#">
+                                <div className="circle-tile-heading purple">
+                                    <i className="fa fa-comments fa-fw fa-3x"></i>
+                                </div>
+                            </a>
+                            <div className="circle-tile-content purple">
+                                <div className="circle-tile-description text-faded">
+                                    UserName:
+                                </div>
+                                <div className="circle-tile-number text-faded">
+                                    {this.state.userName}
+                                    <span id="sparklineD"></span>
+                                </div>
+                                <a href="#" className="circle-tile-footer">More Info <i className="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
                 </div>
+
+
+
+
+
+
+
+                </div>
+
                 <History tradeHistory={this.state.tradeHistory}/>
             </div>
 

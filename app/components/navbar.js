@@ -1,5 +1,6 @@
 import React from "react"; 
-import {Link} from "react-router"; 
+import {Link} from "react-router";
+ 
 
 const navbar = () => (
   <nav className="navbar navbar-fixed-top navbar-inverse">
@@ -11,7 +12,7 @@ const navbar = () => (
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">UserName:XXXXX</a>
+
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
