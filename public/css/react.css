@@ -3,10 +3,7 @@ body{
           background-size: cover;
 }
 
-#app{
-        background-image: url("pic/2.jpg");
-          background-size: cover;
-}
+
 
 @media (min-width: 768px){
 .circle-tile {
@@ -140,4 +137,25 @@ body{
 
 #userNameAndInformation{
     color:lemonchiffon;
+}
+
+
+.container, .container-fluid {
+    margin-top: 15px;
+}
+tr > td.media-left {
+    width: 72px !important;
+    height: 30px;
+    padding: 0 10px;
+    background-color: green;    
+}
+.table .media .media-body > span {
+   color:black;
+}
+
+.table .media .media-body span strong {
+    color: #777;
+}
+.media-body{
+    background: seashell;
 }
