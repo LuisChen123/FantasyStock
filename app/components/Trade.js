@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js"; 
 import update from 'immutability-helper';
+import Popup from 'react-popup';
 
 class Trade extends Component {
   constructor() {
@@ -131,6 +132,7 @@ getInfo() {
 
   buy(stockName, stockPrice) {
     var cost = stockPrice * this.state.amount; 
+    console.log("this is the cost at line 135" , cost);
     var stockPrice = stockPrice;
     console.log(stockPrice);
     var newCash;
@@ -167,7 +169,10 @@ getInfo() {
         this.handleCommitBuy(stockName, stocksAddedAfterBuying, newTradeHistoryObj, newCashValueAfterBuy);    
           }
       }
-  } 
+  } else{
+    Popup.alert('Hello, look at me');
+    this.getInfo();
+  }
   }
 
 
@@ -194,6 +199,8 @@ getInfo() {
     		}
     		else{
     			// alert: Dont have enough shares to sell 
+          console.log("not enought shares to sell")
+          this.getInfo();
     			break; 
     		}
     	}
@@ -202,6 +209,8 @@ getInfo() {
 
     if(stockFound == false){
     	// alert user: Dont have any shares under this name 
+      console.log("do not have this share to sell")
+      this.getInfo();
     }
   }
 
