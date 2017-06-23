@@ -10,29 +10,21 @@ import History from "./children/History.js"
 class Portfolio extends Component {
 
     // static propTypes = {     cookies: instanceOf(Cookies).isRequired   };
-
     constructor() {
-
         super();
-
         this.state = {
+            objectArray:[],
             firstName: "",
             lastName: "",
             age: "",
             grade: "",
             cash: 0,
-            stocks: [
-                {
-                    stockName: "APPL",
-                    shareCount: 33
-                }, {
-                    stockName: "GOOG",
-                    shareCount: 20
-                }, {
-                    stockName: "MMM",
-                    shareCount: 10
-                }
-            ]
+            stocks: [],
+            numberOfArray:0,
+            stocksHold:[],
+            numberOfSharesHold:[],
+            tradeHistory:[]
+
         };
 
         this.getInfo = this
@@ -51,7 +43,20 @@ class Portfolio extends Component {
             .getInfo()
             .then((res) => {
                 // console.log(res); console.log(res.data.firstName)
-                this.setState({firstName: res.data.firstName, lastName: res.data.lastName, age: res.data.age, grade: res.data.grade})
+                console.log("porfolio stuff", res);
+                console.log(res.data.portfolio,"    portfolio data");
+                console.log(res.data.tradeHistory, "     trade history")
+                this.setState({
+                    objectArray:res.data.portfolio,
+                    firstName: res.data.firstName, 
+                    lastName: res.data.lastName, 
+                    age: res.data.age, 
+                    grade: res.data.grade,
+                    cash:res.data.cash.toFixed(2),
+                    numberOfArray:res.data.portfolio.length,
+                    tradeHistory: res.data.tradeHistory
+                   
+            })
             });
     }
 
@@ -118,10 +123,10 @@ class Portfolio extends Component {
                                     Stocks Numbers:
                                 </div>
                                 <div className="circle-tile-number text-faded">
-                                    10
+                                    {this.state.numberOfArray}
                                     <span id="sparklineB"></span>
                                 </div>
-                                <AccountInfo stocks={this.state.stocks}/>
+                                <AccountInfo stocks={this.state.objectArray} />
                             </div>
                         </div>
                     </div>
@@ -135,7 +140,7 @@ class Portfolio extends Component {
                             </a>
                             <div className="circle-tile-content green">
                                 <div className="circle-tile-description text-faded">
-                                    Revenue
+                                    Cash avilable
                                 </div>
                                 <div className="circle-tile-number text-faded">
                                     ${this.state.cash}
@@ -147,7 +152,7 @@ class Portfolio extends Component {
                         </div>
                     </div>
                 </div>
-                <History />
+                <History tradeHistory={this.state.tradeHistory}/>
             </div>
 
         );
