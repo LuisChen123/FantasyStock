@@ -61,6 +61,11 @@ var userSchema = new Schema({
 			shareCount: Number
 		}],
 		
+	leagueID: {
+		type: Schema.Types.ObjectId,
+		ref: "leagueModel"		
+	},
+
 	createdAt: {type: Date, default: Date.now}
 }); 
 // creating model for db
