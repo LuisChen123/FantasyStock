@@ -24,7 +24,7 @@ router.post("/signUp", function(req, res){
 router.get("/react", function(req, res){
 	console.log("working      line 23 routes.js");
 	res.sendFile(path.join(__dirname,"../public/react.html"));
-})
+});
 
 router.get("/getInfo", dbManager.getInfo);
 

@@ -65,6 +65,15 @@ class Portfolio extends Component {
             });
     }
 
+    portfolioValueTracker(){
+        // loop through this.state.stocks
+        var portfolioValue = 0; 
+        var stocksPortfolio = this.state.stocks; 
+        stocksPortfolio.forEach((item)=>{
+            portfolioValue+item.stock
+        }) ; 
+    }
+
     render() {
         return (
             <div className="container">

@@ -40,7 +40,7 @@ class Trade extends Component {
   }
 
   componentDidMount() {
-    this.getDowPrice();
+    this.getDowPrice(); console.log("line 43+++++++++++++++++++"); 
     this.getInfo();
     var intervalId = setInterval(this.getDowPrice, 30000);
     this.setState({interval: intervalId});
@@ -265,7 +265,7 @@ class Trade extends Component {
     apiHelper
       .getDowPrice()
       .then((response) => {
-        console.log("line 118");
+        console.log("line 268");
         var unsortedStringResponse = response
           .data
           .slice(4, response.data.length);
@@ -293,6 +293,7 @@ class Trade extends Component {
         this.setState({DowJonesArray: sortedResponse});
       })
       .catch(function (response) {
+        console.log("line 296++++++++++++++++"); 
         console.log(response); // Needs to see what should go here
       });
   }
