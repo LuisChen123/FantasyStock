@@ -11,6 +11,14 @@ router.get("/saved", function(req, res){
 	}); 
 });
 
+router.post("/getleague", dbManager.leagueModel_GetLeague); 
+
+router.post("/createleague", dbManager.leagueModel_CreateLeague); 
+
+router.post("/joinleague", dbManager.leagueModel_JoinLeague); 
+
+router.get("/league", dbManager.leagueModel_GetUserLeague);
+
 router.post("/update", dbManager.userModel_PostTradeUpdate);
 // router.post("/saved", function(req, res){
 // 	console.log("inside post /saved");

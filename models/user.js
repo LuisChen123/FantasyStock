@@ -62,8 +62,8 @@ var userSchema = new Schema({
 		}],
 		
 	leagueID: {
-		type: Schema.Types.ObjectId,
-		ref: "leagueModel"		
+		type: Schema.Types.ObjectId, 
+		default: null		
 	},
 
 	createdAt: {type: Date, default: Date.now}

@@ -5,12 +5,14 @@ import {Route, IndexRoute, Router, browserHistory} from "react-router";
 import Main from "../components/Main.js"; 
 import Portfolio from "../components/Portfolio.js";
 import Trade from "../components/Trade.js";
+import League from "../components/League.js"; 
 
 const routes = (
 	<Router history = {browserHistory}>
 
 	<Route path="/react" component = {Main}>
 		<Route path="/react/trade" component = {Trade}/>
+		<Route path="/react/league" component = {League}/>
 		<IndexRoute component= {Portfolio} />
 	</Route> 
 

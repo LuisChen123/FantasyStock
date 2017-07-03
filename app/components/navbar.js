@@ -18,6 +18,7 @@ const navbar = () => (
             <ul className="nav navbar-nav">
               <li className="active"><Link to = "/react">Home</Link></li>
               <li><Link to = "/react/trade">Trade</Link></li>  
+              <li><Link to = "/react/league"> League </Link></li> 
             </ul>
             <ul className="nav navbar-nav navbar-right">
              <li><a href="/">Log Out</a></li>

@@ -1,9 +1,81 @@
 // bringing articleModel in
 var userModel = require("./user.js"); 
+var leagueModel = require("./league.js"); 
 var bcrypt = require("bcryptjs"); 
 var path = require("path");
 // create single dbManger
 var dbManager = {
+  
+  leagueModel_GetLeague: function(req, res){
+    var leagueID = req.body.leagueID; 
+    leagueModel.findOne({id:leagueID})
+    .populate("LeagueUser")
+    .exec((err, result)=>{
+      if(err){
+        console.log("line 15+++++++++++++", err);
+      }
+      console.log(result); 
+      res.json(result); 
+    }); 
+  }, 
+
+  leagueModel_CreateLeague: function(req, res){
+    var username = req.cookies.SSID; 
+    leagueModel.create({})
+    .then(function(league){
+        console.log("line >>>>>>>>13, ", league);
+        userModel.update({username: username}, {$set: {leagueID: league._id}}, 
+          function(err, result){
+            if(err){
+              res.json(err); 
+              console.log("Line >>>>>>>>>>>>>>>>>>>18 dbManger.js", err);
+            }
+            leagueModel.update({id: league._id}, {$set:{LeagueUser:result._id}},function(){
+               res.json(league); 
+               console.log("Line >>>>>>>>>>>>>22 dbManager.js", result);
+             }); 
+          }
+        ); 
+    });
+  },
+
+  leagueModel_JoinLeague: function(req, res){
+    var username = req.cookies.SSID; 
+    var leagueID = req.body.leagueID; //coordinate with frontend on var name
+    console.log("line 32+++++++++", leagueID); 
+    userModel.update({"username": username}, {$set: {leagueID: leagueID}}, function(err, result){
+      if(err){
+        console.log("line 35++++++++++++", err); 
+        res.json(err); 
+      }
+      leagueModel.update({id:leagueID}, {$set:{LeagueUser: result._id}}, function(){
+        console.log("line 39+++++++++++", result); 
+        res.json(result); 
+      }); 
+    }); 
+  },
+
+  leagueModel_GetUserLeague: function(req, res){
+    var username = req.cookies.SSID; 
+    userModel.findOne({"username": username}).exec(function(err, result){
+      if(err){
+        res.json(err); 
+      }
+      else{
+        var leagueID = result.leagueID; 
+        leagueModel.findOne({_id: leagueID})
+        .populate("LeagueUser")
+        .exec(function(err, league){
+          if(err){
+            res.json(err); 
+          }
+          else{
+            res.json(league); 
+          }
+        });
+      }   
+    });
+  }, 
 
 	getInfo: function(req,res){
 		var name = req.cookies.SSID;
@@ -17,7 +89,7 @@ var dbManager = {
 	userModel_SaveUser: function(req, res) {
 
 		// console.log(req.body+ "this is 18")
-    	var body = req.body;
+    var body = req.body;
 		console.log("this is userModel_SaveUser" )
     	bcrypt.genSalt(10, function(err, salt) {
 			// console.log('salt', salt);

@@ -42,7 +42,7 @@ class Trade extends Component {
   componentDidMount() {
     this.getDowPrice();
     this.getInfo();
-    var intervalId = setInterval(this.getDowPrice, 300000);
+    var intervalId = setInterval(this.getDowPrice, 30000);
     this.setState({interval: intervalId});
   }
 

@@ -17,6 +17,22 @@ var apiHelper = {
 			updatedStockPortfolio: stockPortfolio,
 			updatedTradeHistory: tradeHistory
 		}); 
+	},
+
+	createLeagueID: function(){
+		return axios.post("/api/createleague");
+	}, 
+
+	joinLeague: function(leagueid){
+		return axios.post("/api/joinleague", {
+			leagueID: leagueid
+		}); 
+	},
+
+	getLeague: function(leagueid){
+		return axios.post("/api/getleague", {
+			leagueID: leagueid
+		}); 
 	}
 
 };

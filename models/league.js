@@ -1,6 +1,6 @@
 var mongoose = require("mongoose"); 
 
-var Schema = moongose.Schema; 
+var Schema = mongoose.Schema; 
 
 var LeagueSchema = new Schema({
 	LeagueUser: [{
