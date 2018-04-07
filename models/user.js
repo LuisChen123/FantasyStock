@@ -1,8 +1,5 @@
-// importing mongoose module
 var mongoose = require("mongoose"); 
-// pulling out schema 
 var Schema = mongoose.Schema; 
-// creating schema for db
 var userSchema = new Schema({
 	
 	firstName: 
@@ -68,7 +65,5 @@ var userSchema = new Schema({
 
 	createdAt: {type: Date, default: Date.now}
 }); 
-// creating model for db
 var userModel = mongoose.model("userModel", userSchema); 
-// exporting model for outside use
 module.exports = userModel; 
