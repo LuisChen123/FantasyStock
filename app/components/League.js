@@ -15,10 +15,9 @@ class League extends Component {
 	}
 
 	handleChange(event) {
-    var newState = {};
-    newState[event.target.id] = event.target.value;
-    this.setState(newState);
-    console.log("Join ID+++++++++++++++++ ", newState);
+    		var newState = {};
+    		newState[event.target.id] = event.target.value;
+    		this.setState(newState);
   	}
 
 	componentDidMount(){
@@ -38,7 +37,6 @@ class League extends Component {
 				console.log("line ----------------22"); 
 				this.setState({leagueID: "empty"});
 			}
-			//console.log(res, "++++++++++++++++++++++++"); 
 		}); 
 	}
 
@@ -59,15 +57,6 @@ class League extends Component {
 			console.log("line 54+++++++++++++ ", res);
 		});
 	}
-	// componentDidMount(){
-	//  	if(this.state.leagueID){
-	//  		console.log("Its NULLLLLLL"); 
-	//  	}
-	//  	else{
-	//  		console.log("Its NOt NULLLLL"); 
-	//  		// make apiHelper call to get all leaguePlayerInfo 
-	//  	}
-	//  }
 
 	render(){
 		return(
