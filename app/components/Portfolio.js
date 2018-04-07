@@ -1,15 +1,12 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
 import apiHelper from "../apiHelper/apiHelper.js";
-// import { instanceOf } from 'prop-types'; import { CookiesProvider,
-// withCookies, Cookies } from 'react-cookie';
 import Info from "./children/Info.js"
 import AccountInfo from "./children/AccountInfo.js"
 import History from "./children/History.js"
 
 class Portfolio extends Component {
 
-    // static propTypes = {     cookies: instanceOf(Cookies).isRequired   };
     constructor() {
         super();
         this.state = {
@@ -34,19 +31,13 @@ class Portfolio extends Component {
     }
 
     componentDidMount() {
-        // console.log(req.cookies);
         this.getInfo();
-        //   const { cookies } = this.props;   this.state = {     name: cookies.getAll()
-        //   }   console.log(this.state.name); }
     }
+    
     getInfo() {
         apiHelper
             .getInfo()
             .then((res) => {
-                // console.log(res); console.log(res.data.firstName)
-                console.log("porfolio stuff", res);
-                console.log(res.data.portfolio, "    portfolio data");
-                console.log(res.data.tradeHistory, "     trade history")
                 this.setState({
                     objectArray: res.data.portfolio,
                     firstName: res.data.firstName,
@@ -177,18 +168,9 @@ class Portfolio extends Component {
                             </div>
                         </div>
                 </div>
-
-
-
-
-
-
-
                 </div>
-
                 <History tradeHistory={this.state.tradeHistory}/>
             </div>
-
         );
     }
 }
